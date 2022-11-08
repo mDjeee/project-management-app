@@ -1,8 +1,33 @@
+
+.footer-wrap {
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
 .logo {
   fill: red;
 }
-
-
 p {
   font-family: Gentium;
+}
+
+.logo-git {
+  width: 30px;
+  height: 30px;
+}
+
+.developers {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.dev {
+  display: flex;
+  flex-direction: row;
 }

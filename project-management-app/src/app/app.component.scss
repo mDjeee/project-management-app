@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 100px;
+}
+
+.main {
+  flex: 1 1 auto;
+}

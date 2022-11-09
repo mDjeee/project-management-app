@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ProjectManagementAppModule} from "../project-management-app/project-management-app.module";
+import { ProjectManagementAppModule } from "../project-management-app/project-management-app.module";
 
 
 
@@ -8,6 +8,9 @@ import {ProjectManagementAppModule} from "../project-management-app/project-mana
   declarations: [],
   imports: [
     CommonModule,
+    ProjectManagementAppModule,
+  ],
+  exports: [
     ProjectManagementAppModule,
   ]
 })

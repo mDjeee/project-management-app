@@ -115,7 +115,7 @@
 }
 
 .middle-card {
-  width: 220px;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -164,7 +164,8 @@
   justify-content: space-evenly;
   align-items: center;
   text-transform: uppercase;
-  width: 600px;
+  max-width: 600px;
+  min-width: 340px;
 
   text-align: left;
   color: #E0E6E8;
@@ -189,7 +190,6 @@
 
 .orange, .gray {
   padding: 10px;
-  width: 573px;
   box-sizing: border-box;
   background-color: #FCBD01;
   display: flex;
@@ -203,6 +203,10 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 36px;
+}
+
+.orange {
+  max-width: 400px;
 }
 
 .orange-content {
@@ -224,7 +228,6 @@
 
 .green {
   display: flex;
-  width: 900px;
   height: 420px;
   background-color: #99E4D2;
 }
@@ -232,6 +235,7 @@
 .gray {
   background-color: #E0E6E8;
   height: 420px;
+  max-width: 500px;
 }
 
 

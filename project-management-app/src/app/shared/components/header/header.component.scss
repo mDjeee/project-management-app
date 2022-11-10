@@ -1,0 +1,47 @@
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header-container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-name {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  background: url('../../../../assets/logo.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+}
+
+.app-name {
+  font-size: 48px;
+  color: #FCBD01;
+}
+
+.tag {
+  color: #5030E5;
+}
+
+.login {
+  box-sizing: border-box;
+  padding: 7.5px 22.5px;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 20px;
+  background-color: #5d47c1;
+}
+
+.login:hover {
+  background-color: #5030E5;
+  cursor: pointer;
+}

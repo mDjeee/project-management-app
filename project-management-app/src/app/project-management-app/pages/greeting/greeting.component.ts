@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./greeting.component.scss']
 })
 export class GreetingModule {
-  AppName = 'AppName'
+  AppName = 'Tagger'
 }

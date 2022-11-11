@@ -8,11 +8,27 @@
           <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput type="text" formControlName="name">
+
+            <mat-error *ngIf="name?.errors?.['required']">
+              Name is required
+            </mat-error>
+
+            <mat-error *ngIf="name?.errors?.['minlength']">
+              This field must have at least 3 characters.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput type="text" formControlName="username">
+
+            <mat-error *ngIf="username?.errors?.['required']">
+              Username is required
+            </mat-error>
+
+            <mat-error *ngIf="username?.errors?.['minlength']">
+              This field must have at least 3 characters.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -21,6 +37,14 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+
+            <mat-error *ngIf="password?.errors?.['required']">
+              Password is required
+            </mat-error>
+
+            <mat-error *ngIf="password?.errors?.['minlength']">
+              This field must have at least 8 characters.
+            </mat-error>
           </mat-form-field>
 
           <button mat-button>Sign up</button>

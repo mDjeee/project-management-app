@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { pipe, Subscription, take, tap } from "rxjs";
 import { AuthService } from "../services/auth.service";
-import { TokenStorageService } from "../services/token-storage.service";
 
 @Component({
   selector: 'app-auth',

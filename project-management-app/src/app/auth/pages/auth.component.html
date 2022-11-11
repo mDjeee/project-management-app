@@ -1,9 +1,15 @@
 <div class="auth-page">
   <div class="wrapper">
-    <div class="auth-container">
-      <form [formGroup]="user">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div class="auth-container" *ngIf="!isLoading">
+      <!-- Sign up -->
+      <form [formGroup]="user" *ngIf="!isLoginMode">
         <mat-card>
           <mat-card-title>Authoriztion</mat-card-title>
+
+          <mat-error *ngIf="!!error">
+            {{ error }}
+          </mat-error>
 
           <mat-form-field>
             <mat-label>Name</mat-label>
@@ -20,13 +26,13 @@
 
           <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="username">
+            <input matInput type="text" formControlName="login">
 
-            <mat-error *ngIf="username?.errors?.['required']">
+            <mat-error *ngIf="login?.errors?.['required']">
               Username is required
             </mat-error>
 
-            <mat-error *ngIf="username?.errors?.['minlength']">
+            <mat-error *ngIf="login?.errors?.['minlength']">
               This field must have at least 3 characters.
             </mat-error>
           </mat-form-field>
@@ -47,7 +53,54 @@
             </mat-error>
           </mat-form-field>
 
-          <button mat-button>Sign up</button>
+          <button type="button" mat-raised-button color="primary" (click)="signUp()">Sign up</button>
+
+          <button type="button" mat-raised-button color="primary" (click)="isLoginMode = !isLoginMode">Switch to Sign in</button>
+        </mat-card>
+      </form>
+
+<!-- Sign in -->
+
+      <form [formGroup]="loginUser" *ngIf="isLoginMode">
+        <mat-card>
+          <mat-card-title>Authoriztion</mat-card-title>
+
+          <mat-error *ngIf="!!error">
+            {{ error }}
+          </mat-error>
+
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="loginName">
+
+            <mat-error *ngIf="loginName?.errors?.['required']">
+              Username is required
+            </mat-error>
+
+            <mat-error *ngIf="loginName?.errors?.['minlength']">
+              This field must have at least 3 characters.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [type]="hide ? 'password' : 'text'" formControlName="loginPassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="loginPassword?.errors?.['required']">
+              Password is required
+            </mat-error>
+
+            <mat-error *ngIf="loginPassword?.errors?.['minlength']">
+              This field must have at least 8 characters.
+            </mat-error>
+          </mat-form-field>
+
+          <button type="button" mat-raised-button color="primary" (click)="signIn()">Sign in</button>
+
+          <button type="button" mat-raised-button color="primary" (click)="isLoginMode = !isLoginMode">Switch to Sign up</button>
         </mat-card>
       </form>
     </div>

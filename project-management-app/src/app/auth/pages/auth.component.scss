@@ -1,0 +1,19 @@
+.wrapper {
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.auth-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

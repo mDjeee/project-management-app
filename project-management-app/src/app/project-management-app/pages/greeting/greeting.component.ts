@@ -5,6 +5,6 @@ import { Component } from "@angular/core";
   templateUrl: './greeting.component.html',
   styleUrls: ['./greeting.component.scss']
 })
-export class GreetingModule {
+export class GreetingComponent {
   AppName = 'Tagger'
 }

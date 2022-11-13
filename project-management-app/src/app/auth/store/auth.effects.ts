@@ -150,6 +150,7 @@ export class AuthEffects {
       localStorage.removeItem('login');
       localStorage.removeItem('user signed in');
       localStorage.removeItem('userId');
+      this.router.navigate(['/login']);
     })
   )
 }

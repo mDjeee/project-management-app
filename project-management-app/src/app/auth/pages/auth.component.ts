@@ -41,14 +41,29 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.error = '';
 
     this.user = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      login: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      name: new FormControl(
+        {value: '', disabled: this.isLoading},
+        [Validators.required, Validators.minLength(3)]
+      ),
+      login: new FormControl(
+        {value: '', disabled: this.isLoading},
+        [Validators.required, Validators.minLength(3)]
+      ),
+      password: new FormControl(
+        {value: '', disabled: this.isLoading},
+        [Validators.required, Validators.minLength(8)]
+      ),
     })
 
     this.loginUser = new FormGroup({
-      loginName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      loginPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      loginName: new FormControl(
+        {value: '', disabled: this.isLoading},
+        [Validators.required, Validators.minLength(3)]
+      ),
+      loginPassword: new FormControl(
+        {value: '', disabled: this.isLoading},
+        [Validators.required, Validators.minLength(8)]
+      ),
     })
 
     this.storeSub = this.store.select('auth').subscribe(authState => {

@@ -64,9 +64,14 @@
           mat-raised-button
           color="primary"
           (click)="signUp()"
-          [disabled]="!user.valid">Sign up</button>
+          [disabled]="!user.valid || isLoading">Sign up</button>
 
-          <button type="button" mat-raised-button color="primary" (click)="switchForm()">Switch to Sign in</button>
+          <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="switchForm()"
+          [disabled]="isLoading">Switch to Sign in</button>
         </mat-card>
       </form>
 
@@ -120,9 +125,14 @@
           mat-raised-button
           color="primary"
           (click)="signIn()"
-          [disabled]="!loginUser.valid">Sign in</button>
+          [disabled]="!loginUser.valid || isLoading">Sign in</button>
 
-          <button type="button" mat-raised-button color="primary" (click)="switchForm()">Switch to Sign up</button>
+          <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="switchForm()"
+          [disabled]="isLoading">Switch to Sign up</button>
         </mat-card>
       </form>
     </div>

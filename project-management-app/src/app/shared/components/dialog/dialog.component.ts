@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
+import { Store } from '@ngrx/store';
 import { MatDialogRef } from "@angular/material/dialog";
-import { AuthService } from "src/app/auth/services/auth.service";
+
+import * as fromApp from '../../../store/app.reducer';
+import * as AuthActions from '../../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-dialog',
@@ -10,7 +13,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    private auth: AuthService,
+    private store: Store<fromApp.AppState>,
   ) { }
 
   onClose() {
@@ -19,6 +22,8 @@ export class DialogComponent {
 
   logOut() {
     this.dialogRef.close();
-    this.auth.logOut();
+    this.store.dispatch(
+      new AuthActions.Logout()
+    );
   }
 }

@@ -58,3 +58,13 @@ body {
   display: block;
   height: 100%;
 }
+
+.blue-snackbar {
+  background: #755edb;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.blue-snackbar .mat-button-wrapper {
+  color: #e7bd3e;
+}

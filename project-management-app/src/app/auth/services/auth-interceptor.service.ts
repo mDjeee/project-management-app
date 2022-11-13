@@ -6,10 +6,6 @@ import { Observable } from 'rxjs';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
-interface Token {
-  token: string
-}
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor() { }

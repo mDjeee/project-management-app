@@ -1,6 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -9,4 +10,7 @@
 
 .main {
   flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

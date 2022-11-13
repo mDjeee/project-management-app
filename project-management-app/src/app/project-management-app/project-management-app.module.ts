@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorNotFoundComponent } from './pages/error-not-found/error-not-found.component';
-import { GreetingModule } from './pages/greeting/greeting.component';
+import { GreetingComponent } from './pages/greeting/greeting.component';
 
 
 
 @NgModule({
   declarations: [
     ErrorNotFoundComponent,
-    GreetingModule,
+    GreetingComponent,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
     ErrorNotFoundComponent,
-    GreetingModule,
+    GreetingComponent,
   ]
 })
 export class ProjectManagementAppModule { }

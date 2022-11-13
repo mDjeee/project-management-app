@@ -1,12 +1,19 @@
 <div class="wrapper">
   <div class="header-container">
-    <div class="logo-name">
+    <div class="logo-name" (click)="toMain()">
       <div class="logo"></div>
       <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
     </div>
 
-    <div class="authorization">
-      <a class="login">Sign in</a>
+    <div (click)="openDialog('0ms', '0ms')" class="authentication" *ngIf="isAuthenticated">
+      <p class="username">{{ username }}</p>
+      <div class="logout">
+        <img class="logout-img" src="../../../../assets/logout.svg" alt="logout">
+      </div>
+    </div>
+
+    <div class="authorization" *ngIf="!isAuthenticated">
+      <a class="login" (click)="openLogIn()">Sign in</a>
     </div>
   </div>
 </div>

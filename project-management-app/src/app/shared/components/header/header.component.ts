@@ -7,11 +7,27 @@ import { DialogComponent } from "../dialog/dialog.component";
 
 import * as fromApp from '../../../store/app.reducer';
 import * as AuthActions from '../../../auth/store/auth.actions';
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [
+    trigger('toRight', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)',
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100px)',
+        }),
+        animate(500)
+      ])
+    ])
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   constructor(

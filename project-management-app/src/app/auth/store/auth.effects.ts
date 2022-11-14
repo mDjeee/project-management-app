@@ -10,6 +10,7 @@ import { AuthResponse } from "../models/AuthResponse";
 import { User } from "../models/user.model";
 import { LoginResponse } from "../models/loginResponse";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { getCookie, removeCookie, setCookie } from "src/app/core/services/cookie.service";
 
 let signinAfterSignupPassword = '';
 let signinAfterSignupLogin = '';
@@ -26,7 +27,7 @@ export function parseJwt(token: string) {
 
 const handleAuthentication = (name: string, login: string, id: string) => {
   const user = new User(id, name, login);
-  localStorage.setItem('user', JSON.stringify(user));
+  setCookie('user', JSON.stringify(user));
   return new AuthActions.SignupSuccess({
     name: name,
     login: login,
@@ -36,10 +37,11 @@ const handleAuthentication = (name: string, login: string, id: string) => {
 
 const handleLogin = (token: string, redirect: boolean) => {
   const {userId, login, iat} = parseJwt(token);
-  localStorage.setItem('token', token);
-  localStorage.setItem('login', login);
-  localStorage.setItem('user signed in', `${new Date(iat * 1000)}`)
-  localStorage.setItem('userId', userId);
+
+  setCookie('token', token);
+  setCookie('login', login);
+  setCookie('user_signed_in', `${new Date(iat * 1000)}`);
+  setCookie('userId', userId);
 
   return new AuthActions.LoginSuccess({token: token, redirect: redirect});
 }
@@ -117,7 +119,7 @@ export class AuthEffects {
   autoLogin$ = this.actions$.pipe(
     ofType(AuthActions.AUTO_LOGIN),
     map(() => {
-      const token = localStorage.getItem('token');
+      const token = getCookie('token');
       if(!token) {
         return { type: 'DUMMY' };
       } else {
@@ -146,10 +148,12 @@ export class AuthEffects {
     tap(() => {
       signinAfterSignupLogin = '';
       signinAfterSignupPassword = '';
-      localStorage.removeItem('token');
-      localStorage.removeItem('login');
-      localStorage.removeItem('user signed in');
-      localStorage.removeItem('userId');
+
+      removeCookie('token');
+      removeCookie('login');
+      removeCookie('user_signed_in');
+      removeCookie('userId');
+
       this.router.navigate(['/login']);
     })
   )

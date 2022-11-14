@@ -97,39 +97,8 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         new AuthActions.SignupStart(this.user.value)
       );
-      // this.isLoading = true;
-      // this.auth.signUp(this.user.value).subscribe({
-      //   next:(response) => {
-      //     localStorage.setItem('user', JSON.stringify(response));
-      //     this.signInAfterSignUp(this.user.value.login, this.user.value.password);
-      //   },
-      //   error: error => {
-      //     this.error = error.error.message;
-      //   },
-      //   complete: () => {
-      //     this.isLoading = false;
-      //   }
-      // });
     }
   }
-
-  // signInAfterSignUp(login: string, password: string) {
-  //   this.isLoading = true;
-  //   this.auth.signIn(login, password).subscribe({
-  //     next: (response) => {
-  //       this.auth.user.next(login);
-  //       localStorage.setItem('token', JSON.stringify(response));
-  //       localStorage.setItem('login', login);
-  //       this.router.navigate(['/']);
-  //     },
-  //     error: (error) => {
-  //       this.error = error;
-  //     },
-  //     complete: () => {
-  //       this.isLoading = false;
-  //     }
-  //   });
-  // }
 
   signIn() {
     if(this.loginUser.valid) {
@@ -139,21 +108,6 @@ export class AuthComponent implements OnInit, OnDestroy {
           password: this.loginUser.value.loginPassword,
         })
       );
-      // this.isLoading = true;
-      // this.auth.signIn(this.loginUser.value.loginName, this.loginUser.value.loginPassword).subscribe({
-      //   next: (response) => {
-      //     this.auth.user.next(this.loginUser.value.loginName);
-      //     localStorage.setItem('token', JSON.stringify(response));
-      //     localStorage.setItem('login', this.loginUser.value.loginName);
-      //     this.router.navigate(['/']);
-      //   },
-      //   error: (error) => {
-      //     this.error = error;
-      //   },
-      //   complete: () => {
-      //     this.isLoading = false;
-      //   }
-      // });
     }
   }
 

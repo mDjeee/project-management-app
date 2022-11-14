@@ -5,11 +5,32 @@
       <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
     </div>
 
-    <div (click)="openDialog('0ms', '0ms')" class="authentication" *ngIf="isAuthenticated" [@toRight]>
-      <p class="username">{{ username }}</p>
-      <div class="logout">
-        <img class="logout-img" src="../../../../assets/logout.svg" alt="logout">
-      </div>
+    <div class="authentication" *ngIf="isAuthenticated" [@toRight]>
+      <button
+        mat-button
+        matTooltip="{{ username }}"
+        matTooltipClass="example-tooltip-blue"
+        disableRipple
+        aria-label="Button that shows a blue tooltip"
+        class="no-hover-effect account">
+        <mat-icon class="icon-scale" color="primary">account_circle</mat-icon>
+
+        <button class="icon-scale" color="primary" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit account</span>
+          </button>
+          <button mat-menu-item (click)="openDialog('0ms', '0ms')">
+            <mat-icon>delete_outline</mat-icon>
+            <span>Delete account</span>
+          </button>
+        </mat-menu>
+
+      </button>
     </div>
 
     <div class="authorization" *ngIf="!isAuthenticated" [@toRight]>

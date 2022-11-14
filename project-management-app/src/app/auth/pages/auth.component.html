@@ -5,7 +5,7 @@
       <form [formGroup]="user" *ngIf="!isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Authoriztion</mat-card-title>
+          <mat-card-title>Authorization</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}

@@ -5,7 +5,7 @@
       <form [formGroup]="user" *ngIf="!isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Authoriztion</mat-card-title>
+          <mat-card-title>Authorization</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}
@@ -13,7 +13,8 @@
 
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput type="text" formControlName="name" [disabled]="isLoading">
+
+            <input matInput type="text" formControlName="name">
 
             <mat-error *ngIf="name?.errors?.['required']">
               Name is required
@@ -26,7 +27,8 @@
 
           <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="login" [disabled]="isLoading">
+
+            <input matInput type="text" formControlName="login">
 
             <mat-error *ngIf="login?.errors?.['required']">
               Username is required
@@ -39,13 +41,14 @@
 
           <mat-form-field>
             <mat-label>Password</mat-label>
+
             <input
             matInput
             type="password"
             [type]="hide ? 'password' : 'text'"
             formControlName="password"
-            [disabled]="isLoading"
             >
+
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -66,12 +69,16 @@
           (click)="signUp()"
           [disabled]="!user.valid || isLoading">Sign up</button>
 
-          <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="switchForm()"
-          [disabled]="isLoading">Switch to Sign in</button>
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            Already have an account? <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">Sign in</button>
+          </div>
+
         </mat-card>
       </form>
 
@@ -80,7 +87,7 @@
       <form [formGroup]="loginUser" *ngIf="isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Authoriztion</mat-card-title>
+          <mat-card-title>Login</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}
@@ -88,7 +95,8 @@
 
           <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="loginName" [disabled]="isLoading">
+
+            <input matInput type="text" formControlName="loginName">
 
             <mat-error *ngIf="loginName?.errors?.['required']">
               Username is required
@@ -101,12 +109,13 @@
 
           <mat-form-field>
             <mat-label>Password</mat-label>
+
             <input
             matInput
             type="password"
             [type]="hide ? 'password' : 'text'"
-            formControlName="loginPassword"
-            [disabled]="isLoading">
+            formControlName="loginPassword">
+
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -127,12 +136,16 @@
           (click)="signIn()"
           [disabled]="!loginUser.valid || isLoading">Sign in</button>
 
-          <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="switchForm()"
-          [disabled]="isLoading">Switch to Sign up</button>
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            Don't have an account? <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">Sign up</button>
+          </div>
+
         </mat-card>
       </form>
     </div>

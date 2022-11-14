@@ -1,6 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { getCookie } from 'src/app/core/services/cookie.service';
 
 import { Observable } from 'rxjs';
 
@@ -12,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
-    const token = JSON.parse(localStorage.getItem('token') || '{}').token;
+    const token = getCookie('token');
     if (!!token) {
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     }

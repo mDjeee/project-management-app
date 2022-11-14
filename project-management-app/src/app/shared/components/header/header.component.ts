@@ -1,33 +1,60 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-import { AuthService } from "src/app/auth/services/auth.service";
 import { DialogComponent } from "../dialog/dialog.component";
+
+import * as fromApp from '../../../store/app.reducer';
+import * as AuthActions from '../../../auth/store/auth.actions';
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [
+    trigger('toRight', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)',
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100px)',
+        }),
+        animate(500)
+      ])
+    ])
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   constructor(
     private router: Router,
-    private auth: AuthService,
     public dialog: MatDialog,
+    private store: Store<fromApp.AppState>,
   ) { }
 
   userSubs!: Subscription;
   isAuthenticated = false;
-  username: any;
+  username!: string | null;
 
   ngOnInit(): void {
-    this.userSubs = this.auth.user.subscribe((login: any) => {
-      this.username = login;
-      this.isAuthenticated = !!login;
+    this.userSubs = this.store.select('auth').subscribe(authState => {
+      this.username = authState.login;
+      this.isAuthenticated = !!authState.login;
     })
 
-    this.auth.autoLogIn();
+    this.store.dispatch(
+      new AuthActions.AutoLogin()
+    );
+    // this.userSubs = this.auth.user.subscribe((login: any) => {
+    //   this.username = login;
+    //   this.isAuthenticated = !!login;
+    // })
+
+    // this.auth.autoLogIn();
   }
 
   ngOnDestroy(): void {

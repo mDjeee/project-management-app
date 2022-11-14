@@ -39,11 +39,12 @@
   border-radius: 7px;
   color: #ffffff;
   font-size: 20px;
-  background-color: #5d47c1;
+  background-color: #5030E5;
+  transition: all 0.3s;
 }
 
 .login:hover {
-  background-color: #5030E5;
+  background-color: #FCBD01;
   cursor: pointer;
 }
 
@@ -66,4 +67,12 @@
   font-size: 24px;
   line-height: 30px;
   font-weight: 400;
+}
+
+.blue-snackbar {
+  background: #2196F3;
+}
+
+.mat-snack-bar-container {
+  background: #2196F3;
 }

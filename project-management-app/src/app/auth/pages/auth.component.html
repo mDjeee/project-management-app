@@ -69,12 +69,16 @@
           (click)="signUp()"
           [disabled]="!user.valid || isLoading">Sign up</button>
 
-          <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="switchForm()"
-          [disabled]="isLoading">Switch to Sign in</button>
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            Already have an account? <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">Sign in</button>
+          </div>
+
         </mat-card>
       </form>
 
@@ -83,7 +87,7 @@
       <form [formGroup]="loginUser" *ngIf="isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Authoriztion</mat-card-title>
+          <mat-card-title>Login</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}
@@ -132,12 +136,16 @@
           (click)="signIn()"
           [disabled]="!loginUser.valid || isLoading">Sign in</button>
 
-          <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="switchForm()"
-          [disabled]="isLoading">Switch to Sign up</button>
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            Don't have an account? <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">Sign up</button>
+          </div>
+
         </mat-card>
       </form>
     </div>

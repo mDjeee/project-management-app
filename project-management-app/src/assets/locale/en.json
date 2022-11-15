@@ -1,0 +1,7 @@
+{
+  "HEADER" : {
+    "LOGIN": "Sign in",
+    "EDIT": "Edit account",
+    "LOGOUT": "Logout"
+  }
+}

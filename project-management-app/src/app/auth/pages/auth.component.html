@@ -5,42 +5,42 @@
       <form [formGroup]="user" *ngIf="!isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Authorization</mat-card-title>
+          <mat-card-title>{{'AUTH.TITLE' | translate}}</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}
           </mat-error>
 
           <mat-form-field>
-            <mat-label>Name</mat-label>
+            <mat-label>{{'AUTH.NAME' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="name">
 
             <mat-error *ngIf="name?.errors?.['required']">
-              Name is required
+              {{'AUTH.NAME_REQUIRED' | translate}}
             </mat-error>
 
             <mat-error *ngIf="name?.errors?.['minlength']">
-              This field must have at least 3 characters.
+              {{'AUTH.THIS_3' | translate}}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Username</mat-label>
+            <mat-label>{{'AUTH.USERNAME' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="login">
 
             <mat-error *ngIf="login?.errors?.['required']">
-              Username is required
+              {{'AUTH.USERNAME_REQUIRED' | translate}}
             </mat-error>
 
             <mat-error *ngIf="login?.errors?.['minlength']">
-              This field must have at least 3 characters.
+              {{'AUTH.THIS_3' | translate}}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Password</mat-label>
+            <mat-label>{{'AUTH.PASSWORD' | translate}}</mat-label>
 
             <input
             matInput
@@ -54,11 +54,11 @@
             </button>
 
             <mat-error *ngIf="password?.errors?.['required']">
-              Password is required
+              {{'AUTH.PASSWORD_REQUIRED' | translate}}
             </mat-error>
 
             <mat-error *ngIf="password?.errors?.['minlength']">
-              This field must have at least 8 characters.
+              {{'AUTH.THIS_8' | translate}}
             </mat-error>
           </mat-form-field>
 
@@ -67,16 +67,16 @@
           mat-raised-button
           color="primary"
           (click)="signUp()"
-          [disabled]="!user.valid || isLoading">Sign up</button>
+          [disabled]="!user.valid || isLoading">{{'AUTH.SIGN_UP' | translate}}</button>
 
           <div class="switch-form">
             <mat-divider></mat-divider>
-            Already have an account? <button
+            {{'AUTH.ALREADY' | translate}} <button
             type="button"
             mat-button
             color="primary"
             (click)="switchForm()"
-            [disabled]="isLoading">Sign in</button>
+            [disabled]="isLoading">{{'AUTH.SIGN_IN' | translate}}</button>
           </div>
 
         </mat-card>
@@ -87,28 +87,28 @@
       <form [formGroup]="loginUser" *ngIf="isLoginMode">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <mat-card>
-          <mat-card-title>Login</mat-card-title>
+          <mat-card-title>{{'AUTH.LOGIN' | translate}}</mat-card-title>
 
           <mat-error *ngIf="!!error">
             {{ error }}
           </mat-error>
 
           <mat-form-field>
-            <mat-label>Username</mat-label>
+            <mat-label>{{'AUTH.USERNAME' | translate}}</mat-label>
 
             <input matInput type="text" formControlName="loginName">
 
             <mat-error *ngIf="loginName?.errors?.['required']">
-              Username is required
+              {{'AUTH.NAME_REQUIRED' | translate}}
             </mat-error>
 
             <mat-error *ngIf="loginName?.errors?.['minlength']">
-              This field must have at least 3 characters.
+              {{'AUTH.THIS_3' | translate}}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Password</mat-label>
+            <mat-label>{{'AUTH.PASSWORD' | translate}}</mat-label>
 
             <input
             matInput
@@ -121,11 +121,11 @@
             </button>
 
             <mat-error *ngIf="loginPassword?.errors?.['required']">
-              Password is required
+              {{'AUTH.PASSWORD_REQUIRED' | translate}}
             </mat-error>
 
             <mat-error *ngIf="loginPassword?.errors?.['minlength']">
-              This field must have at least 8 characters.
+              {{'AUTH.THIS_8' | translate}}
             </mat-error>
           </mat-form-field>
 
@@ -134,16 +134,16 @@
           mat-raised-button
           color="primary"
           (click)="signIn()"
-          [disabled]="!loginUser.valid || isLoading">Sign in</button>
+          [disabled]="!loginUser.valid || isLoading">{{'AUTH.SIGN_IN' | translate}}</button>
 
           <div class="switch-form">
             <mat-divider></mat-divider>
-            Don't have an account? <button
+            {{'AUTH.DONT_HAVE' | translate}} <button
             type="button"
             mat-button
             color="primary"
             (click)="switchForm()"
-            [disabled]="isLoading">Sign up</button>
+            [disabled]="isLoading">{{'AUTH.SIGN_UP' | translate}}</button>
           </div>
 
         </mat-card>

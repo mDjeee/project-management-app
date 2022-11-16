@@ -8,6 +8,8 @@ import { DialogComponent } from "../dialog/dialog.component";
 import * as fromApp from '../../../store/app.reducer';
 import * as AuthActions from '../../../auth/store/auth.actions';
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import {TranslateService} from "@ngx-translate/core";
+
 
 @Component({
   selector: 'app-header',
@@ -30,16 +32,30 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   ]
 })
 export class HeaderComponent implements OnInit, OnDestroy{
-  constructor(
-    private router: Router,
-    public dialog: MatDialog,
-    private store: Store<fromApp.AppState>,
-  ) { }
-
+  isChecked = true;
+  lang: string = "EN";
   userSubs!: Subscription;
   isAuthenticated = false;
   username!: string | null;
 
+
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private store: Store<fromApp.AppState>,
+    private translateService: TranslateService
+  ) { }
+
+
+  public switchLang() {
+    if (this.isChecked === true) {
+      this.translateService.use("ru");
+      this.lang = "РУ"
+    } else {
+      this.translateService.use("en")
+      this.lang = "EN"
+    };
+  }
   ngOnInit(): void {
     this.userSubs = this.store.select('auth').subscribe(authState => {
       this.username = authState.login;

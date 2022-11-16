@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './pages/auth.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -10,11 +11,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AuthComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    UiMaterialModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        UiMaterialModule,
+        TranslateModule,
+    ],
   exports: [
     AuthComponent,
   ]

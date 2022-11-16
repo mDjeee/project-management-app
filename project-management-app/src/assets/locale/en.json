@@ -3,5 +3,59 @@
     "LOGIN": "Sign in",
     "EDIT": "Edit account",
     "LOGOUT": "Logout"
+  },
+  "FOOTER": {
+    "ALISHER": "Alisher",
+    "NEMATOV": "Nematov",
+    "JENYA": "Evgeniya",
+    "KIM": "Kim",
+    "ISLAM": "Islam",
+    "SEYNTIYAZOV": "Seytniyazov"
+  },
+  "DIALOG": {
+    "TITLE": "Do you really want to log out of your account?",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm"
+  },
+  "ERROR": "O-o-ps, page not found",
+  "GREETING": {
+    "TITLE": "Teams don't lose track of work with",
+    "DESCRIPTION": "See your team's plans, track progress, and discuss work in one place. With ",
+    "AS": "as your work manager, you'll stay on top of everything your team's doing",
+    "TRY": "Try it",
+    "GET": "Get organized",
+    "ADD": "Add and assign action items. Teams know what needs to get done, which tasks are a priority, and when work is due.",
+    "STAY": "Stay on track",
+    "FOCUS": "Focus on tasks currently at hand. Visualize each stage of work and see where things are getting stuck.",
+    "HIT": "Hit deadlines",
+    "SEE": "See how work maps out over time. Manage dependent, unscheduled, and overlapping tasks, and create plans teams can count on.",
+    "TEAMAPP": "TeamApp enabled us to reduce planning time by 66% and scale from 40 to 200 campaigns per quarter.",
+    "BADRUL": "Badrul Farooqi — Project Manager",
+    "FLEXIBILITY": "’s flexibility and customization are the most powerful parts of it for our marketing organization.",
+    "DAWN": "Dawn Jensen — Senior Program Marketing Manager",
+    "WITH": "With",
+    "WESAVE": ", we save an estimated 50 hours per week that used to be spent answering email and attending check-in meetings.",
+    "JAMIE": "Jamie Chappell — Creative Director",
+    "INSTRUMENTAL": "has been instrumental in enabling our team to grow by 6X this year and successfully scale our processes.",
+    "RYAN": "Ryan Bonnici — Chief Marketing Officer",
+    "GETSTARTED": "Get Started",
+    "EVERYTHING": "See everything your team’s working on, all in one place.",
+    "TRYFORFREE": "Try for free"
+  },
+  "AUTH": {
+    "TITLE": "Authorization",
+    "NAME": "Name",
+    "NAME_REQUIRED": "Name is required",
+    "THIS_3": "This field must have at least 3 characters.",
+    "USERNAME": "Username",
+    "USERNAME_REQUIRED": "Username is required",
+    "PASSWORD": "Password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "THIS_8": "This field must have at least 8 characters.",
+    "SIGN_UP": "Sign up",
+    "ALREADY": "Already have an account?",
+    "SIGN_IN": "Sign in",
+    "LOGIN": "Login",
+    "DONT_HAVE": "Don't have an account?"
   }
 }

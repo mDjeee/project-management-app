@@ -11,11 +11,12 @@ import {TranslateModule} from "@ngx-translate/core";
   declarations: [
     AuthComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    UiMaterialModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        UiMaterialModule,
+        TranslateModule,
+    ],
   exports: [
     AuthComponent,
   ]

@@ -20,7 +20,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
   exports: [
     FooterComponent,
     HeaderComponent,
-    UiMaterialModule,
     DialogComponent,
   ]
 })

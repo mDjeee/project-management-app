@@ -12,27 +12,4 @@ import { getCookie } from "src/app/core/services/cookie.service";
   providedIn: 'root',
 })
 export class AuthService {
-  private tokenExpirationTimer: any;
-
-  constructor(
-    private http: HttpClient,
-    private store: Store<fromApp.AppState>
-  ) { }
-
-  signUp(form: PostUser) {
-    return this.http.post<PostUser>(url + '/signup', form);
-  }
-
-  signIn(login: string, password: string) {
-    return this.http.post<string>(url + '/signin', {
-      login: login,
-      password: password
-    });
-  }
-
-  setLogoutTimer(expirationDuration: number) {
-    this.tokenExpirationTimer = setTimeout(() => {
-      this.store.dispatch(new AuthActions.Logout())
-    }, expirationDuration);
-  }
 }

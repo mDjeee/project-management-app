@@ -13,6 +13,7 @@
         disableRipple
         aria-label="Button that shows a blue tooltip"
         class="no-hover-effect account">
+
         <mat-icon class="icon-scale" color="primary">account_circle</mat-icon>
 
         <button class="icon-scale" color="primary" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -25,8 +26,8 @@
             <span>Edit account</span>
           </button>
           <button mat-menu-item (click)="openDialog('0ms', '0ms')">
-            <mat-icon>delete_outline</mat-icon>
-            <span>Delete account</span>
+            <mat-icon>logout</mat-icon>
+            <span>Log out</span>
           </button>
         </mat-menu>
 

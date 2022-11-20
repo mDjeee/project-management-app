@@ -32,7 +32,7 @@
 
       </button>
     </div>
-
+    <a [routerLink]="['/dashboards']" *ngIf="isAuthenticated">Dashboards</a>
     <div class="authorization" *ngIf="!isAuthenticated" [@toRight]>
       <a class="login" (click)="openLogIn()">{{"HEADER.LOGIN" | translate}}</a>
     </div>

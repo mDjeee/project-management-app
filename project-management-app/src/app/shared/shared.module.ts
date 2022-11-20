@@ -6,6 +6,7 @@ import { UiMaterialModule } from '../uiMaterial/ui-material.module';
 import { DialogComponent } from './components/dialog/dialog.component';
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,6 +21,7 @@ import {FormsModule} from "@angular/forms";
     UiMaterialModule,
     TranslateModule,
     FormsModule,
+    RouterModule // ? Для работы routerLink в теге a
   ],
   exports: [
     FooterComponent,

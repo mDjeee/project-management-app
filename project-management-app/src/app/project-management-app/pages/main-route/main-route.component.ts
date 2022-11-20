@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
   templateUrl: './main-route.component.html',
   styleUrls: ['./main-route.component.scss']
 })
-export class MainRoute {
+export class MainRouteComponent {
   constructor() {
   }
 }

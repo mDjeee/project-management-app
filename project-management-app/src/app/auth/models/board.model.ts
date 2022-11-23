@@ -5,6 +5,17 @@ export interface IBoardBase {
   order: number;
 }
 
+export interface Dashboard {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface BoardTitle {
+  title: string;
+  description: string;
+}
+
 export interface IBoard extends Omit<IBoardBase, 'order'> {
   columns: IColumn[]
 }

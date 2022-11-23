@@ -6,6 +6,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { MainRouteComponent } from './pages/main-route/main-route.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -13,17 +14,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     GreetingComponent,
     MainRouteComponent,
   ],
-    imports: [
-        CommonModule,
-        TranslateModule,
-        UiMaterialModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    UiMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+  ],
   exports: [
     ErrorNotFoundComponent,
     GreetingComponent,
     MainRouteComponent,
+    NgxSpinnerModule,
   ]
 })
 export class ProjectManagementAppModule { }

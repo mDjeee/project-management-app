@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IBoard, IBoardBase } from 'src/app/auth/models/board.model';
-import { MainRouteService } from '../../services/main-route.service';
+import { Dashboard } from 'src/app/auth/models/board.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+
+import * as fromApp from '../../../store/app.reducer';
+import * as DashboardActions from './store/dashboard.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-main-route',
@@ -10,31 +13,39 @@ import { Observable } from 'rxjs';
   styleUrls: ['./main-route.component.scss'],
 })
 export class MainRouteComponent implements OnInit {
-  public boards: Omit<IBoardBase, 'order'>[] = [];
-  public board!: IBoard;
-
-  public boards$: Observable<Omit<IBoardBase, 'order'>[]> = this.mainRouteService.boards$;
-
+  public boards!: Dashboard[];
   public boardForm!: FormGroup;
-  constructor(private mainRouteService: MainRouteService) {}
+  storeSub!: Subscription;
+
+  constructor(
+    private store: Store<fromApp.AppState>,
+    ) {}
   ngOnInit(): void {
     this.boardForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
     });
-    this.mainRouteService.getAllBoards();
+
+    this.store.dispatch(
+      new DashboardActions.GetBoardsStart()
+    )
+
+    this.storeSub = this.store.select('dashboards').subscribe(dashState => {
+      this.boards = dashState.boards;
+    })
   }
 
   createBoard() {
     const title = this.boardForm.get('title')?.value;
     const description = this.boardForm.get('description')?.value;
-    this.mainRouteService.createBoard(title, description);
+    this.store.dispatch(new DashboardActions.PostBoardStart({title, description}))
     this.boardForm.reset();
   }
 
   deleteBoard(id: string) {
-    this.mainRouteService.deleteBoard(id);
+    this.store.dispatch(new DashboardActions.DeleteBoardStart(id));
   }
 
-  updateBoard(id: string) {}
+  updateBoard(id: string) {
+  }
 }

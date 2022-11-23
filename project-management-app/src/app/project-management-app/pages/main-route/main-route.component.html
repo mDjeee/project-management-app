@@ -14,7 +14,7 @@
   </form>
 
 </div>
-<mat-card *ngFor="let board of (boards$ | async)">
+<mat-card *ngFor="let board of boards">
   <mat-card-content>
     <div class="board">
       <h2 matListItemTitle>{{board.title}}</h2>
@@ -31,8 +31,6 @@
   </mat-card-content>
 </mat-card>
 
-
-
-<mat-card *ngIf="!(boards$ | async)">
+<mat-card *ngIf="!boards">
   <mat-card-content>Ни одной доски пока не создано</mat-card-content>
 </mat-card>

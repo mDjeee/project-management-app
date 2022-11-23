@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { IBoard, IBoardBase } from "src/app/auth/models/board.model";
-import { MainRouteService } from "../../services/main-route.service";
+import { Component, OnInit } from '@angular/core';
+import { IBoard, IBoardBase } from 'src/app/auth/models/board.model';
+import { MainRouteService } from '../../services/main-route.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-route',
   templateUrl: './main-route.component.html',
-  styleUrls: ['./main-route.component.scss']
+  styleUrls: ['./main-route.component.scss'],
 })
 export class MainRouteComponent implements OnInit {
   public boards: Omit<IBoardBase, 'order'>[] = [];
@@ -16,8 +16,7 @@ export class MainRouteComponent implements OnInit {
   public boards$: Observable<Omit<IBoardBase, 'order'>[]> = this.mainRouteService.boards$;
 
   public boardForm!: FormGroup;
-  constructor(private mainRouteService: MainRouteService) {
-  }
+  constructor(private mainRouteService: MainRouteService) {}
   ngOnInit(): void {
     this.boardForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -29,7 +28,7 @@ export class MainRouteComponent implements OnInit {
   createBoard() {
     const title = this.boardForm.get('title')?.value;
     const description = this.boardForm.get('description')?.value;
-    this.mainRouteService.createBoard(title, description)
+    this.mainRouteService.createBoard(title, description);
     this.boardForm.reset();
   }
 
@@ -37,7 +36,5 @@ export class MainRouteComponent implements OnInit {
     this.mainRouteService.deleteBoard(id);
   }
 
-  updateBoard(id: string) {
-
-  }
+  updateBoard(id: string) {}
 }

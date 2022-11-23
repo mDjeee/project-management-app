@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorNotFoundComponent } from './pages/error-not-found/error-not-found.component';
 import { GreetingComponent } from './pages/greeting/greeting.component';
-import {TranslateModule} from "@ngx-translate/core";
+import { TranslateModule } from "@ngx-translate/core";
 import { MainRouteComponent } from './pages/main-route/main-route.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,19 +11,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     ErrorNotFoundComponent,
     GreetingComponent,
-    MainRouteComponent
+    MainRouteComponent,
   ],
     imports: [
         CommonModule,
         TranslateModule,
         UiMaterialModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
   exports: [
     ErrorNotFoundComponent,
     GreetingComponent,
-    MainRouteComponent
+    MainRouteComponent,
   ]
 })
 export class ProjectManagementAppModule { }

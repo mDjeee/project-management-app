@@ -13,6 +13,7 @@
         disableRipple
         aria-label="Button that shows a blue tooltip"
         class="no-hover-effect account">
+
         <mat-icon class="icon-scale" color="primary">account_circle</mat-icon>
 
         <button class="icon-scale" color="primary" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -26,7 +27,11 @@
           </button>
           <button mat-menu-item (click)="openDialog('0ms', '0ms')">
             <mat-icon>logout</mat-icon>
+<<<<<<< HEAD
             <span>{{ "HEADER.LOGOUT" | translate }}</span>
+=======
+            <span>Log out</span>
+>>>>>>> auth
           </button>
         </mat-menu>
 

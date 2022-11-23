@@ -26,7 +26,6 @@ import { RouterModule } from '@angular/router';
   exports: [
     FooterComponent,
     HeaderComponent,
-    UiMaterialModule,
     DialogComponent,
   ]
 })

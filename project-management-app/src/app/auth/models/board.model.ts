@@ -27,3 +27,7 @@ export interface IErrorResponse {
   statusCode: number;
   message: string;
 }
+
+export interface IBoardStore {
+  boards: Omit<IBoardBase, 'order'>[];
+}

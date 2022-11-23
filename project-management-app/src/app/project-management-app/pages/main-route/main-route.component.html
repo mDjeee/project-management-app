@@ -1,0 +1,38 @@
+<div class="dashboar__menu">
+  <form class="example-form" [formGroup]="boardForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+    <button mat-raised-button color="primary"
+            [disabled]="boardForm.invalid"
+            (click)="createBoard()">Создать доску</button>
+  </form>
+
+</div>
+<mat-card *ngFor="let board of (boards$ | async)">
+  <mat-card-content>
+    <div class="board">
+      <h2 matListItemTitle>{{board.title}}</h2>
+      <span matListItemLine>{{board.description}}</span>
+    </div>
+    <div class="buttons">
+      <button mat-icon-button color="primary" (click)="updateBoard(board.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="deleteBoard(board.id)">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+
+<mat-card *ngIf="!(boards$ | async)">
+  <mat-card-content>Ни одной доски пока не создано</mat-card-content>
+</mat-card>

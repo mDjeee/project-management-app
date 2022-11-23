@@ -4,6 +4,8 @@ import { ErrorNotFoundComponent } from './pages/error-not-found/error-not-found.
 import { GreetingComponent } from './pages/greeting/greeting.component';
 import {TranslateModule} from "@ngx-translate/core";
 import { MainRouteComponent } from './pages/main-route/main-route.component';
+import { UiMaterialModule } from '../uiMaterial/ui-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,9 @@ import { MainRouteComponent } from './pages/main-route/main-route.component';
     imports: [
         CommonModule,
         TranslateModule,
+        UiMaterialModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
   exports: [
     ErrorNotFoundComponent,

@@ -23,23 +23,62 @@
 
   <mat-progress-bar *ngIf="isLoadingDashboard" mode="query"></mat-progress-bar>
 
-  <div class="wrapper">
+  <div *ngIf="!errorMsg" class="wrapper">
 
     <div *ngIf="!isLoadingDashboard" class="content">
 
       <mat-card *ngFor="let board of boards">
-        <mat-card-content>
-          <div class="board">
-            <h2 matListItemTitle>{{board.title}}</h2>
-            <span matListItemLine>{{board.description}}</span>
+        <mat-card-content class="board">
+          <div class="board-header">
+            <h2 [class.hide]="board.id === selectedId" class="board-title" matListItemTitle>{{board.title}}</h2>
+
+            <input
+                [(ngModel)]="updateTitle"
+                *ngIf="board.id === selectedId"
+                class="board-title input-title"
+                type="text">
+
+            <div class="buttons board-btns">
+              <button
+              [class.hide]="board.id === selectedId"
+              mat-icon-button color="primary"
+              (click)="selectBoard(board)">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+              [class.hide]="board.id !== selectedId"
+              mat-icon-button color="primary"
+              (click)="updateBoard(board.id)">
+                <mat-icon>send</mat-icon>
+              </button>
+
+              <button
+              [class.hide]="board.id === selectedId"
+              mat-icon-button color="primary"
+              (click)="deleteBoard(board.id)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+
+              <button
+              [class.hide]="board.id !== selectedId"
+              mat-icon-button
+              color="primary"
+              (click)="quitSelected()">
+                <mat-icon>clear</mat-icon>
+              </button>
+
+            </div>
           </div>
-          <div class="buttons">
-            <button mat-icon-button color="primary" (click)="updateBoard(board.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="primary" (click)="deleteBoard(board.id)">
-              <mat-icon>delete_outline</mat-icon>
-            </button>
+
+          <div class="board-content" matListItemLine>
+            <div [class.hide]="board.id === selectedId">{{board.description}}</div>
+            <textarea
+              [(ngModel)]="updateContent"
+              *ngIf="board.id === selectedId"
+              class="board-content textarea"
+              type="text"
+              ></textarea>
           </div>
         </mat-card-content>
       </mat-card>
@@ -54,7 +93,5 @@
     </mat-card>
   </div>
 
-
-
-
+  <mat-error class="error" *ngIf="errorMsg">{{ errorMsg }}</mat-error>
 </div>

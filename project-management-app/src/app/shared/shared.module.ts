@@ -7,6 +7,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import { RouterModule } from '@angular/router';
+import { ConfirmDialogComponent } from './components/confirmDialog/confirm-dialog.component';
 
 
 
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     HeaderComponent,
     DialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,

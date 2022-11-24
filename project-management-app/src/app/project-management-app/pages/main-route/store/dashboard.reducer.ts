@@ -71,7 +71,7 @@ export function dashboardReducer(
           if (board.id === action.payload.id) {
             const newBoard = {
               id: action.payload.id,
-              title: action.payload.id,
+              title: action.payload.title,
               description: action.payload.description
             }
             return newBoard;

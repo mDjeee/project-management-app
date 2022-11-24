@@ -1,0 +1,11 @@
+<div class="card">
+  <h2 class="title">
+    {{ data.message }}
+  </h2>
+  <div class="btns">
+    <button type="button" mat-stroked-button color="primary" [mat-dialog-close]="false">
+      {{ data.cancelText }}</button>
+    <button type="button" mat-raised-button color="primary" [mat-dialog-close]="true">
+      {{ data.confirmText }}</button>
+  </div>
+</div>

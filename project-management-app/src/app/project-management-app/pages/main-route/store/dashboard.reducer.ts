@@ -66,12 +66,23 @@ export function dashboardReducer(
           updateLoading: true
         }
       case DashboardActions.UPDATE_BOARD_SUCCESS:
-        const copiedBoards = state.boards?.slice();
-        copiedBoards?.push(action.payload);
+        let copiedBoards = state.boards.slice();
+        copiedBoards = copiedBoards.map((board) => {
+          if (board.id === action.payload.id) {
+            const newBoard = {
+              id: action.payload.id,
+              title: action.payload.id,
+              description: action.payload.description
+            }
+            return newBoard;
+          } else {
+            return board;
+          }
+        });
         return {
           ...state,
           updateLoading: false,
-          boards: copiedBoards
+          boards: [...copiedBoards]
         }
       case DashboardActions.UPDATE_BOARD_FAILED:
         return {
@@ -80,8 +91,12 @@ export function dashboardReducer(
           dashboardError: action.payload
         }
       case DashboardActions.DELETE_BOARD_START:
+        const deleteId = action.payload;
+        let deletedBoards = state.boards.slice();
+        deletedBoards = deletedBoards.filter((board) => board.id !== deleteId);
         return {
           ...state,
+          boards: [...deletedBoards],
           deleteLoading: true
         }
       case DashboardActions.DELETE_BOARD_SUCCESS:

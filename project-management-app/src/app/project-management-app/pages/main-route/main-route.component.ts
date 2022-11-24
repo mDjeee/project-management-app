@@ -16,6 +16,8 @@ export class MainRouteComponent implements OnInit {
   public boards!: Dashboard[];
   public boardForm!: FormGroup;
   storeSub!: Subscription;
+  isLoadingBoard = false;
+  isLoadingDashboard = false;
 
   constructor(
     private store: Store<fromApp.AppState>,
@@ -32,6 +34,8 @@ export class MainRouteComponent implements OnInit {
 
     this.storeSub = this.store.select('dashboards').subscribe(dashState => {
       this.boards = dashState.boards;
+      this.isLoadingDashboard = dashState.getLoading;
+      this.isLoadingBoard = dashState.postLoading;
     })
   }
 

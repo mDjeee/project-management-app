@@ -27,7 +27,7 @@
 
     <div *ngIf="!isLoadingDashboard" class="content">
 
-      <mat-card *ngFor="let board of boards">
+      <mat-card class="dashboard" *ngFor="let board of boards" routerLink="/board/{{board.id}}">
         <mat-card-content class="board">
           <div class="board-header">
             <h2 [class.hide]="board.id === selectedId" class="board-title" matListItemTitle>{{board.title}}</h2>
@@ -40,32 +40,40 @@
 
             <div class="buttons board-btns">
               <button
+              clickStopPropagation
               [class.hide]="board.id === selectedId"
               mat-icon-button color="primary"
+              class="btn"
               (click)="selectBoard(board)">
-                <mat-icon>edit</mat-icon>
+                <mat-icon class="btn-icon">edit</mat-icon>
               </button>
 
               <button
+              clickStopPropagation
               [class.hide]="board.id !== selectedId"
               mat-icon-button color="primary"
+              class="btn"
               (click)="updateBoard(board.id)">
-                <mat-icon>send</mat-icon>
+                <mat-icon class="btn-icon">send</mat-icon>
               </button>
 
               <button
+              clickStopPropagation
               [class.hide]="board.id === selectedId"
               mat-icon-button color="primary"
+              class="btn"
               (click)="deleteBoard(board.id)">
-                <mat-icon>delete_outline</mat-icon>
+                <mat-icon class="btn-icon">delete_outline</mat-icon>
               </button>
 
               <button
+              clickStopPropagation
               [class.hide]="board.id !== selectedId"
               mat-icon-button
+              class="btn"
               color="primary"
               (click)="quitSelected()">
-                <mat-icon>clear</mat-icon>
+                <mat-icon class="btn-icon">clear</mat-icon>
               </button>
 
             </div>

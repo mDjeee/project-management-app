@@ -6,13 +6,17 @@ import { TranslateModule } from "@ngx-translate/core";
 import { MainRouteComponent } from './pages/main-route/main-route.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { BoardComponent } from './pages/board/board.component';
+import { RouterModule } from '@angular/router';
+import { ClickStopPropagation } from './directives/click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
     ErrorNotFoundComponent,
     GreetingComponent,
     MainRouteComponent,
+    BoardComponent,
+    ClickStopPropagation,
   ],
   imports: [
     CommonModule,
@@ -20,13 +24,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     UiMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule,
+    RouterModule
   ],
   exports: [
     ErrorNotFoundComponent,
     GreetingComponent,
     MainRouteComponent,
-    NgxSpinnerModule,
+    BoardComponent,
+    ClickStopPropagation,
   ]
 })
 export class ProjectManagementAppModule { }

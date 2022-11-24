@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
-import { DialogComponent } from './components/dialog/dialog.component';
-import {TranslateModule} from "@ngx-translate/core";
-import {FormsModule} from "@angular/forms";
+import { TranslateModule } from "@ngx-translate/core";
+import { FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
 import { ConfirmDialogComponent } from './components/confirmDialog/confirm-dialog.component';
 
@@ -15,7 +14,6 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirm-dialo
   declarations: [
     FooterComponent,
     HeaderComponent,
-    DialogComponent,
     ConfirmDialogComponent,
   ],
   imports: [
@@ -28,7 +26,6 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirm-dialo
   exports: [
     FooterComponent,
     HeaderComponent,
-    DialogComponent,
   ]
 })
 export class SharedModule { }

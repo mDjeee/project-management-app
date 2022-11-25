@@ -4,7 +4,7 @@
       <div class="logo"></div>
       <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
     </div>
-    <mat-slide-toggle [(ngModel)]="isChecked" (click)="switchLang()">{{lang}}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="isChecked" (click)="switchLang()" color="primary">{{lang}}</mat-slide-toggle>
     <div class="authentication" *ngIf="isAuthenticated" [@toRight]>
       <button
         mat-button

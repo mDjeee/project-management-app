@@ -21,3 +21,16 @@
 .switch-form {
   text-align: center;
 }
+@media (min-width: 320px) and (max-width: 780px) {
+  .wrapper {
+    max-width: 780px;
+  }
+
+  .mat-card {
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+}

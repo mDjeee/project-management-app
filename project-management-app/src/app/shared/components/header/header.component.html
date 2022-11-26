@@ -1,12 +1,21 @@
 <div class="wrapper">
   <div class="header-container">
-    <div class="logo-name" (click)="toMain()">
-      <div class="logo"></div>
-      <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
+    <div class="nav">
+      <div class="logo-name" (click)="toMain()">
+        <div class="logo"></div>
+        <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
+      </div>
     </div>
-    <mat-slide-toggle [(ngModel)]="isChecked" (click)="switchLang()">{{lang}}</mat-slide-toggle>
-    <div class="authentication" *ngIf="isAuthenticated" [@toRight]>
+
+
+    <div class="authentication" [@toRight]>
+
+      <a class="dashboard" routerLink='/dashboards' *ngIf="isAuthenticated">Boards</a>
+
+      <mat-slide-toggle class="lang" [(ngModel)]="isChecked" color="primary" (click)="switchLang()">{{lang}}</mat-slide-toggle>
+
       <button
+        *ngIf="isAuthenticated"
         mat-button
         matTooltip="{{ username }}"
         matTooltipClass="example-tooltip-blue"
@@ -32,10 +41,9 @@
         </mat-menu>
 
       </button>
-    </div>
-    <a [routerLink]="['/dashboards']" *ngIf="isAuthenticated">Dashboards</a>
-    <div class="authorization" *ngIf="!isAuthenticated" [@toRight]>
-      <a class="login" (click)="openLogIn()">{{"HEADER.LOGIN" | translate}}</a>
+      <div class="authorization" *ngIf="!isAuthenticated" [@toRight]>
+        <a class="login" (click)="openLogIn()">{{"HEADER.LOGIN" | translate}}</a>
+      </div>
     </div>
   </div>
 </div>

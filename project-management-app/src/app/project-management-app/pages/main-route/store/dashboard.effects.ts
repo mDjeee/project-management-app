@@ -8,11 +8,6 @@ import * as DashboardActions from './dashboard.actions';
 
 const boardsUrl = url + '/boards';
 
-const handleError = (errorRes: any) => {
-
-
-};
-
 @Injectable()
 export class DashboardEffects {
   constructor(private actions$: Actions, private http: HttpClient) {}

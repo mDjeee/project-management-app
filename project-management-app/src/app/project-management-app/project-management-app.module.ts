@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardComponent } from './pages/board/board.component';
 import { RouterModule } from '@angular/router';
 import { ClickStopPropagation } from './directives/click-stop-propagation.directive';
+import { SortColumnPipe } from './pages/board/store/pipe/sort-column.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ClickStopPropagation } from './directives/click-stop-propagation.direct
     MainRouteComponent,
     BoardComponent,
     ClickStopPropagation,
+    SortColumnPipe,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { ClickStopPropagation } from './directives/click-stop-propagation.direct
     MainRouteComponent,
     BoardComponent,
     ClickStopPropagation,
+    SortColumnPipe,
   ]
 })
 export class ProjectManagementAppModule { }

@@ -16,17 +16,15 @@ export interface BoardTitle {
   description: string;
 }
 
-export interface IBoard extends Omit<IBoardBase, 'order'> {
-  columns: IColumn[]
-}
-
-export interface IColumn extends Omit<IBoardBase, 'description'> {
-  tasks: ITask[];
-}
-
-export interface ITask extends Omit<IBoardBase, 'description'> {
+export interface Task {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
   userId: string;
-  files:  IFile[];
+  boardId: string;
+  columnId: string;
+  files: IFile
 }
 
 export interface IFile {
@@ -37,8 +35,4 @@ export interface IFile {
 export interface IErrorResponse {
   statusCode: number;
   message: string;
-}
-
-export interface IBoardStore {
-  boards: Omit<IBoardBase, 'order'>[];
 }

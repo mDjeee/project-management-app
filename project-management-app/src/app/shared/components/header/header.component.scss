@@ -10,6 +10,13 @@
   justify-content: space-between;
 }
 
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  font-size: 24px;
+}
+
 .logo-name {
   display: flex;
   align-items: center;
@@ -58,7 +65,7 @@
 .authentication {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-left: 20px;
   cursor: pointer;
 }
@@ -84,4 +91,22 @@
 
 .icon-scale {
   transform: scale(1.5);
+}
+
+.account {
+  padding: 0;
+}
+
+.lang {
+  padding-left: 10px;
+}
+
+.dashboard {
+  text-decoration: none;
+  font-size: 20px;
+  color: #3f51b5;
+}
+
+.dashboard:hover {
+  color: #FCBD01;
 }

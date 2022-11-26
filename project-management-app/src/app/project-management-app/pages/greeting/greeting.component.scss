@@ -26,13 +26,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .title {
     font-size: 17px;
     line-height: 15px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .description {
@@ -102,7 +102,7 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .middle-title {
@@ -136,7 +136,7 @@
   }
 
   .card-3-content {
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -167,12 +167,11 @@
 
   .orange, .gray {
     padding: 5px;
-    box-sizing: border-box;
     background-color: #FCBD01;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Gentium;
+    font-family: Gentium, serif;
     text-align: left;
     color: #090C10;
     font-style: normal;
@@ -203,7 +202,7 @@
   }
 
   .green-content {
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -248,9 +247,9 @@
     font-size: 17px;
   }
 
-  .start-conent {
+  .start-content {
     font-size: 15px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .start-button {
@@ -261,41 +260,25 @@
     font-size: 15px;
     text-align: center;
     letter-spacing: 0.5px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 }
 @media (min-width: 781px) and (max-width: 1400px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .wrapper {
-    max-width: 1239px;
-    height: 100%;
-    margin: 0 auto;
-  }
 
   .greeting-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
   .content {
     width: 400px;
     height: 240px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 10px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .title {
@@ -332,7 +315,7 @@
   .button {
     text-align: center;
     box-sizing: border-box;
-    width: 130px;
+    width: 140px;
     padding: 10px;
     border-radius: 10px;
     background-color: #5030E5;
@@ -368,12 +351,13 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .middle-title {
     font-size: 26px;
     line-height: 32px;
+    margin-top: 20px;
   }
 
   .middle-content {
@@ -404,7 +388,7 @@
 
   .card-3-content,
   .green-content {
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -440,7 +424,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Gentium;
+    font-family: Gentium, serif;
     text-align: left;
     color: #090C10;
     font-style: normal;
@@ -506,27 +490,24 @@
 
   .start {
     font-size: 30px;
+    margin-top: 40px;
   }
 
-  .start-conent {
+  .start-content {
     font-size: 26px;
-    font-family: Gentium;
   }
 
   .start-button {
-    margin-top: 10px;
+    margin-top: 30px;
     width: 140px;
     height: 40px;
-    background: #FFFFFF;
-    border-radius: 3px;
-    color: #000000;
     font-size: 20px;
     text-align: center;
-    letter-spacing: 0.5px;
-    font-family: Gentium;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
+    color: black;
   }
 
 }
@@ -540,7 +521,6 @@
   }
 
   .wrapper {
-    max-width: 1400px;
     height: 100%;
     margin: 0 auto;
   }
@@ -560,7 +540,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .title {
@@ -654,7 +634,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .middle-title {
@@ -696,7 +676,7 @@
 
   .card-3-content,
   .green-content {
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -735,7 +715,7 @@
     justify-content: center;
     align-items: center;
 
-    font-family: Gentium;
+    font-family: Gentium, serif;
     text-align: left;
     color: #090C10;
     font-style: normal;
@@ -804,9 +784,9 @@
     font-size: 48px;
   }
 
-  .start-conent {
+  .start-content {
     font-size: 36px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
   }
 
   .start-button {
@@ -819,7 +799,7 @@
     font-size: 20px;
     text-align: center;
     letter-spacing: 0.5px;
-    font-family: Gentium;
+    font-family: Gentium, serif;
     display: flex;
     justify-content: center;
     align-items: center;

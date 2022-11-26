@@ -1,4 +1,3 @@
-
 .footer-wrap {
   margin-top: 10px;
   background: #ffffff;
@@ -8,11 +7,10 @@
   align-items: center;
   gap: 200px;
 }
-.logo {
-  fill: red;
-}
+
 p {
-  font-family: Gentium;
+  font-family: Gentium, serif;
+  width: 206px;
 }
 
 .logo-git {
@@ -28,7 +26,6 @@ p {
 
 .dev {
   display: flex;
-  flex-direction: row;
   text-decoration: none;
 }
 
@@ -47,4 +44,76 @@ p {
 
 .firstName {
   color: #5030E5;
+}
+
+@media (min-width: 781px) and (max-width: 1239px) {
+  .footer-wrap {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  p {
+    width: 170px;
+  }
+
+  .name {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .logo {
+    height: 20px;
+  }
+
+  .logo-git {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .footer-wrap {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  p {
+    width: 150px;
+  }
+
+  .logo-git {
+    width: 20px;
+    height: 20px;
+  }
+
+  .developers {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .dev {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .logo {
+    height: 20px;
+  }
+
+  .name {
+    font-size: 15px;
+    line-height: 15px;
+  }
+
 }

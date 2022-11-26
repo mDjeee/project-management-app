@@ -33,18 +33,23 @@
     font-size: 17px;
     line-height: 15px;
     font-family: Gentium, serif;
+    padding: 5px;
+    height: 30px;
+    text-align: center;
   }
 
   .description {
     font-size: 15px;
     line-height: 15px;
     padding: 5px;
+    height: 85px;
   }
 
   .greeting {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 10px;
   }
 
   .slide, .img-wrapper {
@@ -352,6 +357,7 @@
     flex-direction: column;
     gap: 15px;
     font-family: Gentium, serif;
+    height: 402px;
   }
 
   .middle-title {

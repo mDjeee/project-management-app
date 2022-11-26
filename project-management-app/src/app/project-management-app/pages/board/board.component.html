@@ -47,7 +47,24 @@
 
         <mat-card class="task" *ngFor="let task of column?.tasks">
           <mat-card-title class="task-title">
-            <p class="task-title-content">{{ task?.title }}</p>
+            <p class="task-title-content">
+              <span>{{ task?.title }}</span>
+              <button mat-icon-button [matMenuTriggerFor]="taskEditForm" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </p>
+
+            <mat-menu #taskEditForm="matMenu">
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item (click)="deleteTask(board.id, column.id, task.id)">
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+
             <mat-divider></mat-divider>
           </mat-card-title>
           <mat-card-content class="task-description">

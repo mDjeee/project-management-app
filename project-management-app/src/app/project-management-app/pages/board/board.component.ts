@@ -109,6 +109,25 @@ export class BoardComponent implements OnInit {
     )
   }
 
+  deleteTask(boardId: string, columnId: string, taskId: string) {
+    this.dialogService.confirmDialog({
+      title: 'Delete',
+      message: 'Are you sure to delete task?',
+      cancelText: 'No',
+      confirmText: 'Yes',
+    }).subscribe((response: boolean) => {
+      if(response) {
+        this.store.dispatch(
+          new BoardActions.DeleteTaskStart({
+            boardId,
+            columnId,
+            taskId
+          })
+        )
+      }
+    })
+  }
+
   dropColumn(event: CdkDragDrop<Column>) {
     console.log(event)
     if(event.previousIndex === event.currentIndex) {

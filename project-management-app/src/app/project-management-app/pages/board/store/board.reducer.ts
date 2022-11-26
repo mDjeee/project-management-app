@@ -222,6 +222,8 @@ export function boardReducer(
 
         let copiedPostTasks: Task[] = postTaskColumn.tasks ? [...postTaskColumn.tasks] : [];
 
+        copiedPostTasks.push(postTask);
+
         postTaskColumns.forEach((column, index) => {
           if(column.id === action.payload.columnId) {
             postTaskColumns[index] = {
@@ -232,6 +234,7 @@ export function boardReducer(
         })
 
         let postTaskBoard = Object.assign({}, state.board)
+
         return {
           ...state,
           board: {
@@ -249,8 +252,42 @@ export function boardReducer(
         }
       case BoardActions.DELETE_TASK_START:
 
+        let copiedDeleteTaskColumns: Column[] = []
+        if(state.board?.columns?.slice()) {
+          copiedDeleteTaskColumns = state.board?.columns?.slice()
+        }
+
+        let deleteTaskColumn: Column = copiedDeleteTaskColumns.filter((column) => column.id === action.payload.columnId)[0];
+
+        let copiedDeleteTasks: Task[] = [];
+        if(deleteTaskColumn.tasks?.slice()){
+          copiedDeleteTasks = deleteTaskColumn.tasks?.slice()
+        }
+
+        copiedDeleteTasks = copiedDeleteTasks.filter((task) => action.payload.taskId !== task.id);
+
+        deleteTaskColumn = {
+          ...deleteTaskColumn,
+          tasks: copiedDeleteTasks
+        }
+
+        copiedDeleteTaskColumns.forEach((column, index) => {
+          if(column.id === action.payload.columnId) {
+            copiedDeleteTaskColumns[index] = {
+              ...deleteTaskColumn,
+              tasks: copiedDeleteTasks
+            }
+          }
+        })
+
+
+        let deleteTaskBoard = Object.assign({}, state.board)
         return {
-          ...state
+          ...state,
+          board: {
+            ...deleteTaskBoard,
+            columns: [...copiedDeleteTaskColumns]
+          }
         }
       case BoardActions.DELETE_TASK_SUCCESS:
         return {

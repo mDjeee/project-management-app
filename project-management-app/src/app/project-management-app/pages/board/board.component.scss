@@ -52,6 +52,12 @@
   flex-direction: column;
 }
 
+.task-title-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .column-form {
   display: flex;
 }

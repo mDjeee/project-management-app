@@ -339,8 +339,6 @@ export function boardReducer(
           }
         })
 
-        console.log(copiedPutTasks)
-
         putTaskColumn = {
           ...putTaskColumn,
           tasks: copiedPutTasks

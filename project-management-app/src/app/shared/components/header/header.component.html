@@ -9,10 +9,10 @@
 
     <div class="authentication" [@toRight]>
 
-      <a class="dashboard" routerLink='/dashboards' *ngIf="isAuthenticated">Boards</a>
+      <a class="dashboard" routerLink='/dashboards' *ngIf="isAuthenticated">{{"HEADER.BOARDS" | translate}}</a>
 
       <mat-slide-toggle class="lang" [(ngModel)]="isChecked" color="primary" (click)="switchLang()">{{lang}}</mat-slide-toggle>
-      
+
       <button
         *ngIf="isAuthenticated"
         mat-button

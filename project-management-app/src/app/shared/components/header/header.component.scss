@@ -109,44 +109,4 @@
 
 .dashboard:hover {
   color: #FCBD01;
-
-@media (min-width: 781px)  and (max-width: 1400px) {
-  .header-container {
-    display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    gap: 150px;
-  }
-
-}
-
-@media (min-width: 320px) and (max-width: 780px){
-  .wrapper {
-    min-width: 320px;
-    margin-top: 10px;
-  }
-
-  .header-container {
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .app-name {
-    font-size: 28px;
-  }
-
-  .login {
-    font-size: 10px;
-  }
-
-  .logout-img {
-    height: 24px;
-  }
 }

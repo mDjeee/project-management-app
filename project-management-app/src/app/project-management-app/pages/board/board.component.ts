@@ -171,11 +171,10 @@ export class BoardComponent implements OnInit {
     result.push(target);
     const result2 = [...this.columns.map(it => ({ ...it })).filter(item => !result.map(it => it.id).includes(item.id)), ...result].sort((a, b) => a.order - b.order);
     result2.forEach((item, index) => item.order = index + 1);
-    console.log(result2);
     this.store.dispatch(
       new BoardActions.SortByOrder(result2)
     )
-    result2.forEach((column, index) => {
+    result2.forEach((column) => {
       this.http.put(`${url}/boards/${this.boardId}/columns/${column.id}`, {
         title: column.title,
         order: column.order

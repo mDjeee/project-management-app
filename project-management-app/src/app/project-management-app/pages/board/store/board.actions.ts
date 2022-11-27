@@ -50,9 +50,7 @@ export const CLEAR_ERROR = '[Board] Clear Error';
 export class GetBoardStart implements Action {
   readonly type = GET_BOARD_START;
 
-  constructor(public payload: string) {
-    console.log('GET_BOARD_START')
-  }
+  constructor(public payload: string) { }
 }
 
 export class GetBoardSuccess implements Action {
@@ -84,9 +82,7 @@ export class GetBoardSuccess implements Action {
 export class GetBoardFailed implements Action {
   readonly type = GET_BOARD_FAILED;
 
-  constructor(public payload: {statusCode: number, message: string}) {
-    console.log('GET_BOARD_FAILED')
-  }
+  constructor(public payload: {statusCode: number, message: string}) { }
 }
 
 

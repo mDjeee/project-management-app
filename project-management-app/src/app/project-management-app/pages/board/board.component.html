@@ -25,7 +25,7 @@
 
               <mat-icon
                 *ngIf="inputTitleToggleId === column.id"
-                clickStopPropagation (click)="updateColumn(board.id, column.id, column.order)"
+                clickStopPropagation (click)="updateColumn(column.id, column.order)"
                 class="btn-icon"
               >send</mat-icon>
 
@@ -39,7 +39,7 @@
                 color="primary"
                 *ngIf="inputTitleToggleId !== column.id"
                 clickStopPropagation
-                (click)="deleteColumn(board.id, column.id)"
+                (click)="deleteColumn(column.id)"
                 class="btn-icon"
               >close</mat-icon>
             </div>
@@ -66,7 +66,7 @@
                   <mat-icon>edit</mat-icon>
                   <span>{{ "BOARD.EDIT" | translate }}</span>
                 </button>
-                <button mat-menu-item (click)="deleteTask(board.id, column.id, task.id)">
+                <button mat-menu-item (click)="deleteTask(column.id, task.id)">
                   <mat-icon>delete_outline</mat-icon>
                   <span>{{ "BOARD.DELETE" | translate }}</span>
                 </button>
@@ -86,8 +86,10 @@
                 <button
                   class="taks-form-add"
                   mat-button color="primary"
+
                   (click)="updateTask(board.id, column.id, task.id, +task.order)"
                 >{{ "BOARD.EDIT_TASK" | translate }}</button>
+
               </mat-menu>
 
               <mat-divider></mat-divider>
@@ -115,6 +117,7 @@
           </mat-form-field>
 
           <button class="taks-form-add" mat-button color="primary" (click)="addTask(board.id, column.id)">{{ "BOARD.ADD_TASK" | translate }}</button>
+
         </mat-menu>
 
       </mat-card>

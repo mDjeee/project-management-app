@@ -1,0 +1,127 @@
+.wrapper {
+  margin: 0 auto;
+}
+
+.header-container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 400px;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  font-size: 24px;
+}
+
+.logo-name {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo {
+  background: url('../../../../assets/logo.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+}
+
+.app-name {
+  font-size: 48px;
+  color: #FCBD01;
+  margin-bottom: 0;
+}
+
+.tag {
+  color: #5030E5;
+}
+
+.login {
+  box-sizing: border-box;
+  padding: 7.5px 22.5px;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 20px;
+  background-color: #5030E5;
+  transition: all 0.3s;
+}
+
+.login:hover {
+  background-color: #FCBD01;
+  cursor: pointer;
+}
+
+.logout-img {
+  height: 24px;
+  width: auto;
+  filter: invert(15%) sepia(100%) saturate(3872%) hue-rotate(251deg) brightness(92%) contrast(95%);
+}
+
+.authentication {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.username {
+  color: #5030E5;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+.blue-snackbar {
+  background: #2196F3;
+}
+
+.mat-snack-bar-container {
+  background: #2196F3;
+}
+
+.mat-button-wrapper {
+  display: flex;
+}
+
+.icon-scale {
+  transform: scale(1.5);
+}
+
+.account {
+  padding: 0;
+}
+
+.lang {
+  padding-left: 10px;
+}
+
+.dashboard {
+  text-decoration: none;
+  font-size: 20px;
+  color: #3f51b5;
+  width: 63px;
+}
+
+.dashboard:hover {
+  color: #FCBD01;
+}
+
+@media (min-width: 781px) and (max-width: 1239px) {
+  .header-container {
+    gap: 150px;
+  }
+
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .header-container {
+    gap: 10px;
+    flex-direction: column;
+  }
+}

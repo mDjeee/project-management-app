@@ -1,0 +1,119 @@
+.footer-wrap {
+  margin-top: 10px;
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+
+p {
+  font-family: Gentium, serif;
+  width: 206px;
+}
+
+.logo-git {
+  width: 30px;
+  height: 30px;
+  filter: invert(15%) sepia(100%) saturate(3872%) hue-rotate(251deg) brightness(92%) contrast(95%);
+}
+
+.developers {
+  display: flex;
+  gap: 10px;
+}
+
+.dev {
+  display: flex;
+  text-decoration: none;
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+  // filter: invert(15%) sepia(100%) saturate(3872%) hue-rotate(251deg) brightness(92%) contrast(95%);
+  filter: invert(79%) sepia(31%) saturate(2370%) hue-rotate(357deg) brightness(97%) contrast(105%);
+}
+
+.name {
+  color: #FCBD01;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.firstName {
+  color: #5030E5;
+}
+
+@media (min-width: 781px) and (max-width: 1239px) {
+  .footer-wrap {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  p {
+    width: 170px;
+  }
+
+  .name {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .logo {
+    height: 20px;
+  }
+
+  .logo-git {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .footer-wrap {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  p {
+    width: 150px;
+  }
+
+  .logo-git {
+    width: 20px;
+    height: 20px;
+  }
+
+  .developers {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .dev {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .logo {
+    height: 20px;
+  }
+
+  .name {
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+}

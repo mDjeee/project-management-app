@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <div class="header-container">
+    <div class="nav">
+      <div class="logo-name" (click)="toMain()">
+        <div class="logo"></div>
+        <h1 class="app-name"><span class="tag">Tag</span>ger</h1>
+      </div>
+    </div>
+
+    <div class="authentication" [@toRight]>
+
+      <a class="dashboard" routerLink='/dashboards' *ngIf="isAuthenticated">{{"HEADER.BOARDS" | translate}}</a>
+
+      <mat-slide-toggle class="lang" [(ngModel)]="isChecked" color="primary" (click)="switchLang()">{{lang}}</mat-slide-toggle>
+
+      <button
+        *ngIf="isAuthenticated"
+        mat-button
+        matTooltip="{{ username }}"
+        matTooltipClass="example-tooltip-blue"
+        disableRipple
+        aria-label="Button that shows a blue tooltip"
+        class="no-hover-effect account">
+
+        <mat-icon class="icon-scale" color="primary">account_circle</mat-icon>
+
+        <button class="icon-scale" color="primary" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>{{ "HEADER.EDIT" | translate }}</span>
+          </button>
+          <button mat-menu-item (click)="openDialog()">
+            <mat-icon>logout</mat-icon>
+            <span>{{ "HEADER.LOGOUT" | translate }}</span>
+          </button>
+        </mat-menu>
+
+      </button>
+      <div class="authorization" *ngIf="!isAuthenticated" [@toRight]>
+        <a class="login" (click)="openLogIn()">{{"HEADER.LOGIN" | translate}}</a>
+      </div>
+    </div>
+  </div>
+
+</div>

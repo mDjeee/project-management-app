@@ -1,0 +1,153 @@
+<div class="auth-page">
+  <div class="wrapper">
+    <div class="auth-container">
+      <!-- Sign up -->
+      <form [formGroup]="user" *ngIf="!isLoginMode">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+        <mat-card>
+          <mat-card-title>{{'AUTH.TITLE' | translate}}</mat-card-title>
+
+          <mat-error *ngIf="!!error">
+            {{ error }}
+          </mat-error>
+
+          <mat-form-field>
+            <mat-label>{{'AUTH.NAME' | translate}}</mat-label>
+
+            <input matInput type="text" formControlName="name">
+
+            <mat-error *ngIf="name?.errors?.['required']">
+              {{'AUTH.NAME_REQUIRED' | translate}}
+            </mat-error>
+
+            <mat-error *ngIf="name?.errors?.['minlength']">
+              {{'AUTH.THIS_3' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'AUTH.USERNAME' | translate}}</mat-label>
+
+            <input matInput type="text" formControlName="login">
+
+            <mat-error *ngIf="login?.errors?.['required']">
+              {{'AUTH.USERNAME_REQUIRED' | translate}}
+            </mat-error>
+
+            <mat-error *ngIf="login?.errors?.['minlength']">
+              {{'AUTH.THIS_3' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'AUTH.PASSWORD' | translate}}</mat-label>
+
+            <input
+            matInput
+            type="password"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            >
+
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="password?.errors?.['required']">
+              {{'AUTH.PASSWORD_REQUIRED' | translate}}
+            </mat-error>
+
+            <mat-error *ngIf="password?.errors?.['minlength']">
+              {{'AUTH.THIS_8' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="signUp()"
+          [disabled]="!user.valid || isLoading">{{'AUTH.SIGN_UP' | translate}}</button>
+
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            {{'AUTH.ALREADY' | translate}} <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">{{'AUTH.SIGN_IN' | translate}}</button>
+          </div>
+
+        </mat-card>
+      </form>
+
+<!-- Sign in -->
+
+      <form [formGroup]="loginUser" *ngIf="isLoginMode">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+        <mat-card>
+          <mat-card-title>{{'AUTH.LOGIN' | translate}}</mat-card-title>
+
+          <mat-error *ngIf="!!error">
+            {{ error }}
+          </mat-error>
+
+          <mat-form-field>
+            <mat-label>{{'AUTH.USERNAME' | translate}}</mat-label>
+
+            <input matInput type="text" formControlName="loginName">
+
+            <mat-error *ngIf="loginName?.errors?.['required']">
+              {{'AUTH.NAME_REQUIRED' | translate}}
+            </mat-error>
+
+            <mat-error *ngIf="loginName?.errors?.['minlength']">
+              {{'AUTH.THIS_3' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'AUTH.PASSWORD' | translate}}</mat-label>
+
+            <input
+            matInput
+            type="password"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="loginPassword">
+
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="loginPassword?.errors?.['required']">
+              {{'AUTH.PASSWORD_REQUIRED' | translate}}
+            </mat-error>
+
+            <mat-error *ngIf="loginPassword?.errors?.['minlength']">
+              {{'AUTH.THIS_8' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="signIn()"
+          [disabled]="!loginUser.valid || isLoading">{{'AUTH.SIGN_IN' | translate}}</button>
+
+          <div class="switch-form">
+            <mat-divider></mat-divider>
+            {{'AUTH.DONT_HAVE' | translate}} <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="switchForm()"
+            [disabled]="isLoading">{{'AUTH.SIGN_UP' | translate}}</button>
+          </div>
+
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

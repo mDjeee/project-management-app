@@ -1,0 +1,17 @@
+.btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.title {
+  color: #5030E5;
+  text-align: center;
+}
+
+.card {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

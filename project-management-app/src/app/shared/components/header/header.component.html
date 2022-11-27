@@ -7,13 +7,12 @@
       </div>
     </div>
 
-
     <div class="authentication" [@toRight]>
 
       <a class="dashboard" routerLink='/dashboards' *ngIf="isAuthenticated">Boards</a>
 
       <mat-slide-toggle class="lang" [(ngModel)]="isChecked" color="primary" (click)="switchLang()">{{lang}}</mat-slide-toggle>
-
+      
       <button
         *ngIf="isAuthenticated"
         mat-button
@@ -46,4 +45,5 @@
       </div>
     </div>
   </div>
+
 </div>

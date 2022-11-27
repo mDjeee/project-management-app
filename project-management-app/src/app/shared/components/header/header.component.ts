@@ -3,12 +3,12 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-import { DialogComponent } from "../dialog/dialog.component";
 
 import * as fromApp from '../../../store/app.reducer';
 import * as AuthActions from '../../../auth/store/auth.actions';
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import {TranslateService} from "@ngx-translate/core";
+import { ConfirmDialogService } from "../../services/confirm-dialog.service";
 
 
 @Component({
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   constructor(
     private router: Router,
-    public dialog: MatDialog,
+    public dialogService: ConfirmDialogService,
     private store: Store<fromApp.AppState>,
     private translateService: TranslateService
   ) { }
@@ -79,14 +79,19 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.router.navigate(['/']);
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogComponent, {
-      width: '300px',
-      height: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: { name: 'Name' },
-    });
+  openDialog(): void {
+    this.dialogService.confirmDialog({
+      title: 'Delete',
+      message: 'Are you sure to logout?',
+      cancelText: 'No',
+      confirmText: 'Yes',
+    }).subscribe((response: boolean) => {
+      if(response) {
+        this.store.dispatch(
+          new AuthActions.Logout()
+        );
+      }
+    })
   }
 
 }

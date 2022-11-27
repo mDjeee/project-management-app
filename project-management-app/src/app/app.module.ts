@@ -18,8 +18,8 @@ import { environment } from 'src/environments/environment';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {MissingTranslationService} from "./localization/localization";
 import {HttpLoaderFactory} from "src/app/localization/localization"
-
-
+import { DashboardEffects } from './project-management-app/pages/main-route/store/dashboard.effects';
+import { BoardEffets } from './project-management-app/pages/board/store/board.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import {HttpLoaderFactory} from "src/app/localization/localization"
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, DashboardEffects, BoardEffets]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     TranslateModule.forRoot({

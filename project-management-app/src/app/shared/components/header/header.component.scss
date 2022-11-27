@@ -10,6 +10,13 @@
   gap: 400px;
 }
 
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  font-size: 24px;
+}
+
 .logo-name {
   display: flex;
   align-items: center;
@@ -58,7 +65,7 @@
 .authentication {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-left: 20px;
   cursor: pointer;
 }
@@ -86,45 +93,20 @@
   transform: scale(1.5);
 }
 
-
-@media (min-width: 781px)  and (max-width: 1400px) {
-  .header-container {
-    display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    gap: 150px;
-  }
-
+.account {
+  padding: 0;
 }
 
-@media (min-width: 320px) and (max-width: 780px){
-  .wrapper {
-    min-width: 320px;
-    margin-top: 10px;
-  }
+.lang {
+  padding-left: 10px;
+}
 
-  .header-container {
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+.dashboard {
+  text-decoration: none;
+  font-size: 20px;
+  color: #3f51b5;
+}
 
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .app-name {
-    font-size: 28px;
-  }
-
-  .login {
-    font-size: 10px;
-  }
-
-  .logout-img {
-    height: 24px;
-  }
-
+.dashboard:hover {
+  color: #FCBD01;
 }

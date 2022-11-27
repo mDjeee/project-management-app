@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UiMaterialModule } from '../uiMaterial/ui-material.module';
-import { DialogComponent } from './components/dialog/dialog.component';
-import {TranslateModule} from "@ngx-translate/core";
-import {FormsModule} from "@angular/forms";
+import { TranslateModule } from "@ngx-translate/core";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from '@angular/router';
+import { ConfirmDialogComponent } from './components/confirmDialog/confirm-dialog.component';
 
 
 
@@ -13,19 +14,18 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     FooterComponent,
     HeaderComponent,
-    DialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
     UiMaterialModule,
     TranslateModule,
     FormsModule,
+    RouterModule // ? Для работы routerLink в теге a
   ],
   exports: [
     FooterComponent,
     HeaderComponent,
-    UiMaterialModule,
-    DialogComponent,
   ]
 })
 export class SharedModule { }

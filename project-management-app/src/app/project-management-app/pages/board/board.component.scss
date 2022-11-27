@@ -122,3 +122,33 @@
   height: 101px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+@media (min-width: 781px) and (max-width: 1400px) {
+  .board-content-columns {
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .board-content {
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .board-content-columns {
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .board-content {
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+}

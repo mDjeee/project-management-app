@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Board, Column, IBoard } from './models/board.model';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { Task, Column, IBoard } from './models/board.model';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 import * as fromApp from '../../../store/app.reducer';
 import * as BoardActions from '../board/store/board.actions';
@@ -59,7 +59,6 @@ export class BoardComponent implements OnInit {
         this.board = state.board;
         if(state.board.columns) {
           this.columns = state.board.columns;
-          console.log(this.columns)
         }
       }
     })
@@ -161,6 +160,7 @@ export class BoardComponent implements OnInit {
     const target = {...this.columns[event.previousIndex]};
     const affectedIndex = event.currentIndex > event.previousIndex ? event.currentIndex : event.currentIndex - 1;
     const affectedColumns = this.columns.filter((column, index) => index > affectedIndex && column.id != target.id);
+
     let result: Column[] = [];
     if(affectedColumns.length > 0) {
       result = [...affectedColumns.map(column => ({ ...column, order: column.order + 1 }))];
@@ -169,16 +169,43 @@ export class BoardComponent implements OnInit {
       target.order = Math.max(...this.columns.map(column => column.order)) + 1;
     }
     result.push(target);
-    const result2 = [...this.columns.map(it => ({ ...it })).filter(item => !result.map(it => it.id).includes(item.id)), ...result].sort((a, b) => a.order - b.order);
-    result2.forEach((item, index) => item.order = index + 1);
+
+    const newColumns = [...this.columns.map(column => ({ ...column })).filter(item => !result.map(column => column.id).includes(item.id)), ...result].sort((a, b) => a.order - b.order);
+    newColumns.forEach((item, index) => item.order = index + 1);
+
     this.store.dispatch(
-      new BoardActions.SortByOrder(result2)
+      new BoardActions.SortByOrder(newColumns)
     )
-    result2.forEach((column) => {
+
+    newColumns.forEach((column) => {
       this.http.put(`${url}/boards/${this.boardId}/columns/${column.id}`, {
         title: column.title,
         order: column.order
       }).subscribe()
     })
+  }
+
+  taskDrop(event: CdkDragDrop<{
+        id: string,
+        title: string,
+        description: string,
+        order: number,
+        userId: string,
+        files: {
+          filename: string,
+          fileSize: number
+        }[] | null
+      }[]>) {
+
+    if (event.previousContainer === event.container) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

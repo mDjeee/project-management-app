@@ -43,9 +43,21 @@ export function boardReducer(
           ...state,
         }
       case BoardActions.GET_BOARD_SUCCESS:
+
+        let getBoardColumns: Column[] = []
+        let getColumns = action.payload.columns?.slice()
+        if(getColumns) {
+          getBoardColumns = [...getColumns];
+        }
+
+        let getBoard = Object.assign({}, state.board);
+
         return {
           ...state,
-          board: action.payload
+          board: {
+            ...getBoard,
+            columns: getBoardColumns.sort((a,b) => a.order - b.order)
+          }
         }
       case BoardActions.GET_BOARD_FAILED:
         return {
@@ -137,7 +149,9 @@ export function boardReducer(
 
         updateColumnsReturn.forEach((column, index) => {
           if(column.id === action.payload.columnId) {
-            updateColumnsReturn[index]=updateColumn
+            updateColumnsReturn[index] = {
+              ...updateColumn
+            }
           }
         })
 
@@ -292,6 +306,78 @@ export function boardReducer(
       case BoardActions.DELETE_TASK_SUCCESS:
         return {
           ...state
+        }
+      case BoardActions.PUT_TASK_START:
+        return {
+          ...state
+        }
+      case BoardActions.PUT_TASK_SUCCESS:
+        let copiedPutTaskColumns: Column[] = []
+        if(state.board?.columns?.slice()) {
+          copiedPutTaskColumns = state.board?.columns?.slice()
+        }
+
+        let putTaskColumn: Column = copiedPutTaskColumns.filter((column) => column.id === action.payload.columnId)[0];
+
+        let copiedPutTasks: Task[] = [];
+        if(putTaskColumn.tasks?.slice()){
+          copiedPutTasks = putTaskColumn.tasks?.slice()
+        }
+
+        copiedPutTasks = copiedPutTasks.filter(Boolean);
+
+        copiedPutTasks.forEach((task, index) => {
+          if(action.payload.id === task.id) {
+            copiedPutTasks[index] = {
+              ...task,
+              id: action.payload.id,
+              title: action.payload.title,
+              description: action.payload.description,
+              userId: action.payload.userId,
+              order: +action.payload.order
+            }
+          }
+        })
+
+        console.log(copiedPutTasks)
+
+        putTaskColumn = {
+          ...putTaskColumn,
+          tasks: copiedPutTasks
+        }
+
+        copiedPutTaskColumns.forEach((column, index) => {
+          if(action.payload.columnId === column.id) {
+            copiedPutTaskColumns[index] = {
+              ...putTaskColumn,
+              tasks: copiedPutTasks
+            }
+          }
+        })
+
+
+        let putTaskBoard = Object.assign({}, state.board)
+        return {
+          ...state,
+          board: {
+            ...putTaskBoard,
+            columns: [...copiedPutTaskColumns]
+          }
+        }
+      case BoardActions.SORT_BY_ORDER:
+
+        let sortColumns: Column[] = []
+        if(action.payload.slice()) {
+          sortColumns = action.payload.slice()
+        }
+
+        let sortTaskBoard = Object.assign({}, state.board);
+        return {
+          ...state,
+          board: {
+            ...sortTaskBoard,
+            columns: sortColumns.sort((a,b) => a.order - b.order)
+          }
         }
       default:
         return state;

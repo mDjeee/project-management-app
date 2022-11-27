@@ -6,7 +6,7 @@ import { Column } from "../../models/board.model";
   name: "sortColumn"
 })
 export class SortColumnPipe {
-  transform(array: Array<Column>, args: string): Array<Column> {
+  transform(array: Array<Column>): Array<Column> {
     array.sort((a: Column, b: Column) => {
       if (a.order < b.order) {
         return -1;

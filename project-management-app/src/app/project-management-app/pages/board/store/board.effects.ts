@@ -17,7 +17,6 @@ export class BoardEffets {
   getBoard$ = this.actions$.pipe(
     ofType(BoardActions.GET_BOARD_START),
     switchMap((getBoard: BoardActions.GetBoardStart) => {
-      console.log(boardsUrl)
       return this.http.get<Board>(`${boardsUrl}/${getBoard.payload}`)
         .pipe(
           map((board: Board) => {
@@ -159,6 +158,56 @@ export class BoardEffets {
           return of(new BoardActions.PutColumnFailed({statusCode: 500, message: errorMessage}));
         })
       )
+    })
+  )
+
+  @Effect()
+  editTask = this.actions$.pipe(
+    ofType(BoardActions.PUT_TASK_START),
+    switchMap((putTask: BoardActions.PutTaskStart) => {
+      return this.http.put<{
+        id: string,
+        title: string,
+        order: number,
+        description: string,
+        userId: string,
+        boardId: string,
+        columnId: string
+      }>(`${boardsUrl}/${putTask.payload.boardId}/columns/${putTask.payload.columnId}/tasks/${putTask.payload.id}`,{
+          title: putTask.payload.title,
+          description: putTask.payload.description,
+          userId: putTask.payload.userId,
+          boardId: putTask.payload.boardId,
+          columnId: putTask.payload.columnId,
+          order: +putTask.payload.order
+      }).pipe(
+        map((res) => {
+          return new BoardActions.PutTaskSuccess({
+            boardId: res.boardId,
+            columnId: res.columnId,
+            id: res.id,
+            title: res.title,
+            description: res.description,
+            userId: res.userId,
+            order: +res.order
+          })
+        }),
+        catchError((errorRes) => {
+          let errorMessage = 'An unknown error occurred!';
+          if (!errorRes.error || !errorRes.error.error) {
+            return of(new BoardActions.PutColumnFailed({statusCode: errorRes.statusCode, message:errorRes.error.message}));
+          }
+          return of(new BoardActions.PutColumnFailed({statusCode: 500, message: errorMessage}));
+        })
+      )
+    })
+  )
+
+  @Effect({dispatch: false})
+  sortByOrder = this.actions$.pipe(
+    ofType(BoardActions.SORT_BY_ORDER),
+    map((columns) => {
+      return new BoardActions.SortByOrder(columns);
     })
   )
 }

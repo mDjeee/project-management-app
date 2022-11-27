@@ -110,3 +110,16 @@
 .dashboard:hover {
   color: #FCBD01;
 }
+
+@media (min-width: 781px) and (max-width: 1239px) {
+  .header-container {
+    gap: 150px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .header-container {
+    gap: 10px;
+    flex-direction: column;
+  }
+}

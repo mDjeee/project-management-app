@@ -105,10 +105,11 @@ export class BoardComponent implements OnInit {
   }
 
   addTask(boardId: string, columnId: string) {
+    console.log(this.boardId);
     if(this.taskTitle.value && this.taskDescription.value)
     this.store.dispatch(
       new BoardActions.PostTaskStart({
-        boardId: boardId,
+        boardId: this.boardId,
         columnId: columnId,
         title: this.taskTitle.value,
         description: this.taskDescription.value,

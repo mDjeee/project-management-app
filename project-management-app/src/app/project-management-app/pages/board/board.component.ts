@@ -73,7 +73,7 @@ export class BoardComponent implements OnInit {
     this.columnTitle.reset();
   }
 
-  deleteColumn(boardId: string, columnId: string) {
+  deleteColumn(columnId: string) {
     this.dialogService.confirmDialog({
       title: 'Delete',
       message: 'Are you sure to delete column?',
@@ -81,7 +81,7 @@ export class BoardComponent implements OnInit {
       confirmText: 'Yes',
     }).subscribe((response: boolean) => {
       if(response) {
-        this.store.dispatch(new BoardActions.DeleteColumnStart({boardId: boardId, columnId: columnId}));
+        this.store.dispatch(new BoardActions.DeleteColumnStart({boardId: this.boardId, columnId: columnId}));
       }
     })
   }
@@ -96,16 +96,15 @@ export class BoardComponent implements OnInit {
     this.updateColumnTitle.reset();
   }
 
-  updateColumn(boardId: string, columnId: string, order: number) {
+  updateColumn(columnId: string, order: number) {
     if(this.updateColumnTitle.value) {
-      this.store.dispatch(new BoardActions.PutColumnStart({boardId, columnId, title: this.updateColumnTitle.value, order}));
+      this.store.dispatch(new BoardActions.PutColumnStart({boardId: this.boardId, columnId, title: this.updateColumnTitle.value, order}));
     }
     this.inputTitleToggleId = '';
     this.updateColumnTitle.reset();
   }
 
-  addTask(boardId: string, columnId: string) {
-    console.log(this.boardId);
+  addTask(columnId: string) {
     if(this.taskTitle.value && this.taskDescription.value)
     this.store.dispatch(
       new BoardActions.PostTaskStart({
@@ -118,7 +117,7 @@ export class BoardComponent implements OnInit {
     )
   }
 
-  deleteTask(boardId: string, columnId: string, taskId: string) {
+  deleteTask(columnId: string, taskId: string) {
     this.dialogService.confirmDialog({
       title: 'Delete',
       message: 'Are you sure to delete task?',
@@ -128,7 +127,7 @@ export class BoardComponent implements OnInit {
       if(response) {
         this.store.dispatch(
           new BoardActions.DeleteTaskStart({
-            boardId,
+            boardId: this.boardId,
             columnId,
             taskId
           })
@@ -137,7 +136,7 @@ export class BoardComponent implements OnInit {
     })
   }
 
-  updateTask(boardId: string, columnId: string, id: string, order: number) {
+  updateTask(columnId: string, id: string, order: number) {
     if(this.taskEditTitle.value && this.taskEditDescription.value) {
       this.store.dispatch(
         new BoardActions.PutTaskStart({
@@ -146,7 +145,7 @@ export class BoardComponent implements OnInit {
           description: this.taskEditDescription.value,
           userId: this.userId,
           columnId,
-          boardId,
+          boardId: this.boardId,
           order
         })
       )

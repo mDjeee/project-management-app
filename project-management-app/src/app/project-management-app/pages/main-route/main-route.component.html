@@ -3,11 +3,11 @@
     <div class="dashboard__menu">
       <form class="example-form" [formGroup]="boardForm">
         <mat-form-field class="example-full-width">
-          <mat-label>Title</mat-label>
+          <mat-label>{{ "MAIN_Route.TITLE" | translate }}</mat-label>
           <input matInput placeholder="Title" formControlName="title">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <mat-label>Description</mat-label>
+          <mat-label>{{ "MAIN_Route.DES" | translate }}</mat-label>
           <input matInput placeholder="Description" formControlName="description">
         </mat-form-field>
         <button
@@ -16,7 +16,7 @@
           color="primary"
           [disabled]="boardForm.invalid"
           (click)="createBoard()"
-          >Создать доску</button>
+          >{{ "MAIN_Route.CREATE" | translate }}</button>
       </form>
     </div>
   </div>
@@ -97,7 +97,7 @@
     </div>
 
     <mat-card *ngIf="!boards">
-      <mat-card-content>Ни одной доски пока не создано</mat-card-content>
+      <mat-card-content>{{ "MAIN_Route.NONE" | translate }}</mat-card-content>
     </mat-card>
   </div>
 

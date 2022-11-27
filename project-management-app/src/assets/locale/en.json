@@ -2,7 +2,8 @@
   "HEADER" : {
     "LOGIN": "Sign in",
     "EDIT": "Edit account",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "BOARDS": "Boards"
   },
   "FOOTER": {
     "ALISHER": "Alisher",
@@ -57,5 +58,19 @@
     "SIGN_IN": "Sign in",
     "LOGIN": "Login",
     "DONT_HAVE": "Don't have an account?"
+  },
+  "MAIN_Route": {
+    "TITLE": "Title",
+    "DES": "Description",
+    "CREATE": "Create board",
+    "NONE": "No boards created yet"
+  },
+  "BOARD": {
+    "ADD_TASK": "Add Task",
+    "ADD_TITLE": "Add title",
+    "ADD": "add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "EDIT_TASK": "Edit Task"
   }
 }

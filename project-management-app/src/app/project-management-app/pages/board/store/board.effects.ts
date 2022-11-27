@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import url from 'src/app/constants/baseUrl';
-import { Board, Column } from '../models/board.model';
+import { Board, Column, Task } from '../models/board.model';
 
 import * as BoardActions from './board.actions';
 
@@ -208,6 +208,14 @@ export class BoardEffets {
     ofType(BoardActions.SORT_BY_ORDER),
     map((columns) => {
       return new BoardActions.SortByOrder(columns);
+    })
+  )
+
+  @Effect({dispatch: false})
+  sortTaskByOrder = this.actions$.pipe(
+    ofType(BoardActions.SORT_TASK_BY_ORDER),
+    map((response: {columnId: string, tasks: Task[]}) => {
+      return new BoardActions.SortTaskByOrder({columnId: response.columnId, tasks: response.tasks});
     })
   )
 }

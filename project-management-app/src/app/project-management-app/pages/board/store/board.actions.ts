@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Column } from '../models/board.model';
+import { Column, Task } from '../models/board.model';
 
 export const GET_BOARD_START = '[Board] Get Board Start';
 export const GET_BOARD_SUCCESS = '[Board] Get Board Success';
@@ -43,6 +43,8 @@ export const DELETE_TASK_START = '[Task] Delete Task Start';
 export const DELETE_TASK_SUCCESS = '[Task] Delete Task Success';
 
 export const SORT_BY_ORDER = '[Sort] By Order';
+export const SORT_TASK_BY_ORDER = '[Sort] Task By Order';
+
 
 
 export const CLEAR_ERROR = '[Board] Clear Error';
@@ -321,6 +323,11 @@ export class SortByOrder implements Action {
   constructor(public payload: Column[]) {}
 }
 
+export class SortTaskByOrder implements Action {
+  readonly type = SORT_TASK_BY_ORDER;
+  constructor(public payload: { columnId: string, tasks: Task[]}) { }
+}
+
 export type BoardActions =
  | GetBoardStart
  | GetBoardSuccess
@@ -352,3 +359,4 @@ export type BoardActions =
  | DeleteTaskSuccess
  | ClearError
  | SortByOrder
+ | SortTaskByOrder

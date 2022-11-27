@@ -339,8 +339,6 @@ export function boardReducer(
           }
         })
 
-        console.log(copiedPutTasks)
-
         putTaskColumn = {
           ...putTaskColumn,
           tasks: copiedPutTasks
@@ -377,6 +375,38 @@ export function boardReducer(
           board: {
             ...sortTaskBoard,
             columns: sortColumns.sort((a,b) => a.order - b.order)
+          }
+        }
+      case BoardActions.SORT_TASK_BY_ORDER:
+
+        let copiedSortTaskColumns: Column[] = []
+        if(state.board) {
+          if(state.board.columns) {
+            copiedSortTaskColumns = state.board.columns.slice()
+          }
+        }
+        let sortTaskColumns: Column[] = []
+        if(state.board?.columns) {
+          sortTaskColumns = copiedSortTaskColumns.slice();
+        }
+
+        let copiedSortTaskColumn = sortTaskColumns.filter((coulmn) => coulmn.id === action.payload.columnId)[0];
+
+        sortTaskColumns.forEach((column, index) => {
+          if(column.id === action.payload.columnId) {
+            sortTaskColumns[index] = {
+              ...copiedSortTaskColumn,
+              tasks: action.payload.tasks
+            }
+          }
+        })
+
+        let sortColumnTaskBoard = Object.assign({}, state.board);
+        return {
+          ...state,
+          board: {
+            ...sortColumnTaskBoard,
+            columns: sortTaskColumns
           }
         }
       default:

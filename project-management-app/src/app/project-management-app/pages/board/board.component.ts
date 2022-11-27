@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Task, Column, IBoard } from './models/board.model';
+import { Task, Column, IBoard, ITask } from './models/board.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 import * as fromApp from '../../../store/app.reducer';
@@ -30,6 +30,7 @@ export class BoardComponent implements OnInit {
   taskEditDescription = new FormControl('', [Validators.required]);
   focused = false;
   inputTitleToggleId = '';
+  allTasks: ITask[] = [];
 
   userId = ' '
 
@@ -52,6 +53,7 @@ export class BoardComponent implements OnInit {
       new BoardActions.GetBoardStart(this.boardId)
     )
 
+
     this.userId = getCookie('userId') as string
 
     this.store.select('board').subscribe(state => {
@@ -59,6 +61,11 @@ export class BoardComponent implements OnInit {
         this.board = state.board;
         if(state.board.columns) {
           this.columns = state.board.columns;
+          this.columns.forEach(column => {
+            this.http.get<ITask[]>(`${url}/boards/${this.boardId}/columns/${column.id}/tasks`).subscribe(tasks => {
+              this.allTasks = [...this.allTasks, ...tasks];
+            })
+          })
         }
       }
     })
@@ -73,7 +80,7 @@ export class BoardComponent implements OnInit {
     this.columnTitle.reset();
   }
 
-  deleteColumn(boardId: string, columnId: string) {
+  deleteColumn(columnId: string) {
     this.dialogService.confirmDialog({
       title: 'Delete',
       message: 'Are you sure to delete column?',
@@ -81,7 +88,7 @@ export class BoardComponent implements OnInit {
       confirmText: 'Yes',
     }).subscribe((response: boolean) => {
       if(response) {
-        this.store.dispatch(new BoardActions.DeleteColumnStart({boardId: boardId, columnId: columnId}));
+        this.store.dispatch(new BoardActions.DeleteColumnStart({boardId: this.boardId, columnId: columnId}));
       }
     })
   }
@@ -96,19 +103,19 @@ export class BoardComponent implements OnInit {
     this.updateColumnTitle.reset();
   }
 
-  updateColumn(boardId: string, columnId: string, order: number) {
+  updateColumn(columnId: string, order: number) {
     if(this.updateColumnTitle.value) {
-      this.store.dispatch(new BoardActions.PutColumnStart({boardId, columnId, title: this.updateColumnTitle.value, order}));
+      this.store.dispatch(new BoardActions.PutColumnStart({boardId: this.boardId, columnId, title: this.updateColumnTitle.value, order}));
     }
     this.inputTitleToggleId = '';
     this.updateColumnTitle.reset();
   }
 
-  addTask(boardId: string, columnId: string) {
+  addTask(columnId: string) {
     if(this.taskTitle.value && this.taskDescription.value)
     this.store.dispatch(
       new BoardActions.PostTaskStart({
-        boardId: boardId,
+        boardId: this.boardId,
         columnId: columnId,
         title: this.taskTitle.value,
         description: this.taskDescription.value,
@@ -117,7 +124,7 @@ export class BoardComponent implements OnInit {
     )
   }
 
-  deleteTask(boardId: string, columnId: string, taskId: string) {
+  deleteTask(columnId: string, taskId: string) {
     this.dialogService.confirmDialog({
       title: 'Delete',
       message: 'Are you sure to delete task?',
@@ -127,7 +134,7 @@ export class BoardComponent implements OnInit {
       if(response) {
         this.store.dispatch(
           new BoardActions.DeleteTaskStart({
-            boardId,
+            boardId: this.boardId,
             columnId,
             taskId
           })
@@ -136,7 +143,7 @@ export class BoardComponent implements OnInit {
     })
   }
 
-  updateTask(boardId: string, columnId: string, id: string, order: number) {
+  updateTask(columnId: string, id: string, order: number) {
     if(this.taskEditTitle.value && this.taskEditDescription.value) {
       this.store.dispatch(
         new BoardActions.PutTaskStart({
@@ -145,7 +152,7 @@ export class BoardComponent implements OnInit {
           description: this.taskEditDescription.value,
           userId: this.userId,
           columnId,
-          boardId,
+          boardId: this.boardId,
           order
         })
       )
@@ -198,7 +205,41 @@ export class BoardComponent implements OnInit {
       }[]>) {
 
     if (event.previousContainer === event.container) {
-    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    const sameColumn = event.previousContainer.id === event.container.id;
+
+
+    const columnTaskIds = event.previousContainer.data.map((task) => task.id);
+
+    const target = { ...this.allTasks.filter(task => columnTaskIds.includes(task.id))[event.previousIndex], columnId: event.container.id };
+
+    let columnId = '';
+
+    this.allTasks.forEach(task => {
+      if(columnTaskIds.includes(task.id)) {
+        columnId = task.columnId;
+      }
+    })
+
+    const affectedIndex = sameColumn && event.currentIndex > event.previousIndex ? event.currentIndex : event.currentIndex - 1;
+    const affectedTasks = event.previousContainer.data.filter((task, index) => index > affectedIndex && task.id != target.id);
+
+    const previousTasks = [...this.allTasks.filter(task => columnTaskIds.includes(task.id))]
+
+    let result: Task[] = [];
+    if (affectedTasks.length > 0) {
+      result = [...affectedTasks.map(task => ({ ...task, order: task.order + 1 }))];
+      target.order = Math.min(...affectedTasks.map(task => task.order));
+    } else {
+      target.order = Math.max(...event.previousContainer.data.map(task => task.order)) + 1;
+    }
+    result.push(target);
+
+    const newTasks = [...event.previousContainer.data.map(it => ({ ...it })).filter(item => !result.map(it => it.id).includes(item.id)), ...result].sort((a, b) => a.order - b.order);
+
+    this.store.dispatch(
+      new BoardActions.SortTaskByOrder({columnId: columnId, tasks: newTasks})
+    )
+
     } else {
       transferArrayItem(
         event.previousContainer.data,
